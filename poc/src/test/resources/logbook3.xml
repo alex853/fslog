@@ -1,0 +1,16 @@
+<FSLog>
+
+    <Transfer>
+        <Date>2019-04-15</Date>
+        <Method>flights</Method>
+        <Departure>KBFL</Departure>
+        <Destination>EGTB</Destination>
+        <TimeOut>12:00</TimeOut>
+        <Status>done</Status>
+        <Comment>Flight to EGTB for IFT flying lessons</Comment>
+        <Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+    </Transfer>
+
+</FSLog>
