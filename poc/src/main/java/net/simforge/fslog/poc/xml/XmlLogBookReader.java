@@ -97,7 +97,9 @@ public class XmlLogBookReader {
     private static Discontinuity readDiscontinuity(Element element) {
         Discontinuity.Builder builder = new Discontinuity.Builder();
 
-        builder.setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE));
+        builder
+                .setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE))
+                .setTime(parseTime(element.getElementsByTagName("Time")));
 
         return builder.build();
     }
