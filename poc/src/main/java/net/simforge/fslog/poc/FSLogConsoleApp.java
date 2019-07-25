@@ -4,6 +4,7 @@ import net.simforge.fslog.poc.xml.XmlLogBookReader;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -49,10 +50,62 @@ public class FSLogConsoleApp {
 
         FlightReport previousFlightReport = (FlightReport) lastEntry;
 
-        //FlightReport flightReport = new FlightReport();
+        FlightReport.Builder builder = new FlightReport.Builder();
 
-        System.out.print("Specify date of flight: ");
-//        flightReport.setDate(readDate());
+        System.out.println();
+        System.out.println("Adding flight.....");
+        System.out.println();
+
+        System.out.print("Specify date of flight (or empty string for current date): ");
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        LocalDate date;
+        if (s == null || s.trim().length() == 0) {
+            date = LocalDate.now();
+        } else {
+            date = LocalDate.parse(s, DateTimeFormatter.ISO_DATE);
+        }
+        // todo check legality of date
+        builder.setDate(date);
+
+        System.out.println("Departure airport is: " + previousFlightReport.getDestination() + " (destination of last flight)");
+        builder.setDeparture(previousFlightReport.getDestination());
+
+        System.out.print("Specify destination airport: ");
+        String destination = scanner.nextLine();
+        // todo check destination correctness
+        destination = destination.toUpperCase().trim();
+        builder.setDestination(destination);
+
+        System.out.print("Time OUT: ");
+        builder.setTimeOut(readTime());
+        // todo check not null
+        // todo check overlapping
+
+        System.out.print("Time OFF: ");
+        builder.setTimeOff(readTime());
+        // todo check it is not earlier than OUT
+
+        System.out.print("Time ON: ");
+        builder.setTimeOn(readTime());
+        // todo check it is not earlier than OFF or OUT
+
+        System.out.print("Time IN: ");
+        builder.setTimeIn(readTime());
+        // todo check not null
+        // todo check it is not earlier than ON or OFF or OUT
+
+        logBook.add(builder.build());
+        printLogBook(logBook);
+    }
+
+    private static LocalTime readTime() {
+        Scanner scanner = new Scanner(System.in);
+        String time = scanner.nextLine();
+        if (time == null || time.trim().length() == 0) {
+            return null;
+        }
+        return LocalTime.parse(time, HHmm);
     }
 
     private static void printLogBook(LogBook logBook) {

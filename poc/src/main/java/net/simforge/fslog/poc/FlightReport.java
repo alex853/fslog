@@ -40,11 +40,11 @@ public class FlightReport implements LogBookEntry {
     }
 
     public LocalTime getTimeOff() {
-        return timeOut;
+        return timeOff;
     }
 
     public LocalTime getTimeOn() {
-        return timeOut;
+        return timeOn;
     }
 
     public LocalTime getTimeIn() {
