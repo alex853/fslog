@@ -10,15 +10,7 @@ public class Transfer implements LogBookEntry {
     private LocalTime timeOut;
     private LocalTime timeIn;
 
-    public Transfer() {
-    }
-
-    private Transfer(Transfer src) {
-        this.date = src.date;
-        this.departure = src.departure;
-        this.destination = src.destination;
-        this.timeOut = src.timeOut;
-        this.timeIn = src.timeIn;
+    private Transfer() {
     }
 
     @Override
@@ -26,49 +18,69 @@ public class Transfer implements LogBookEntry {
         return date;
     }
 
-    public Transfer setDate(LocalDate date) {
-        Transfer copy = new Transfer(this);
-        copy.date = date;
-        return copy;
-    }
-
     public String getDeparture() {
         return departure;
-    }
-
-    public Transfer setDeparture(String departure) {
-        Transfer copy = new Transfer(this);
-        copy.departure = departure;
-        return copy;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public Transfer setDestination(String destination) {
-        Transfer copy = new Transfer(this);
-        copy.destination = destination;
-        return copy;
-    }
-
     public LocalTime getTimeOut() {
         return timeOut;
-    }
-
-    public Transfer setTimeOut(LocalTime timeOut) {
-        Transfer copy = new Transfer(this);
-        copy.timeOut = timeOut;
-        return copy;
     }
 
     public LocalTime getTimeIn() {
         return timeIn;
     }
 
-    public Transfer setTimeIn(LocalTime timeIn) {
-        Transfer copy = new Transfer(this);
-        copy.timeIn = timeIn;
-        return copy;
+    public static class Builder {
+        private Transfer transfer = new Transfer();
+
+        public Builder() {
+        }
+
+        public Builder(Transfer transfer) {
+            this.transfer = copy(transfer);
+        }
+
+        public Builder setDate(LocalDate date) {
+            this.transfer.date = date;
+            return this;
+        }
+
+        public Builder setDeparture(String departure) {
+            this.transfer.departure = departure;
+            return this;
+        }
+
+        public Builder setDestination(String destination) {
+            this.transfer.destination = destination;
+            return this;
+        }
+
+        public Builder setTimeOut(LocalTime timeOut) {
+            this.transfer.timeOut = timeOut;
+            return this;
+        }
+
+        public Builder setTimeIn(LocalTime timeIn) {
+            this.transfer.timeIn = timeIn;
+            return this;
+        }
+
+        public Transfer build() {
+            return copy(transfer);
+        }
+
+        private Transfer copy(Transfer source) {
+            Transfer copy = new Transfer();
+            copy.date = source.date;
+            copy.departure = source.departure;
+            copy.destination = source.destination;
+            copy.timeOut = source.timeOut;
+            copy.timeIn = source.timeIn;
+            return copy;
+        }
     }
 }

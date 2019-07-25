@@ -7,12 +7,7 @@ public class Discontinuity implements LogBookEntry {
     private LocalDate date;
     private LocalTime time;
 
-    public Discontinuity() {
-    }
-
-    private Discontinuity(Discontinuity src) {
-        this.date = src.date;
-        this.time = src.time;
+    private Discontinuity() {
     }
 
     @Override
@@ -20,19 +15,39 @@ public class Discontinuity implements LogBookEntry {
         return date;
     }
 
-    public Discontinuity setDate(LocalDate date) {
-        Discontinuity copy = new Discontinuity(this);
-        copy.date = date;
-        return copy;
-    }
-
     public LocalTime getTime() {
         return time;
     }
 
-    public Discontinuity setTime(LocalTime time) {
-        Discontinuity copy = new Discontinuity(this);
-        copy.time = time;
-        return copy;
+    public static class Builder {
+        private Discontinuity discontinuity = new Discontinuity();
+
+        public Builder() {
+        }
+
+        public Builder(Discontinuity discontinuity) {
+            this.discontinuity = copy(discontinuity);
+        }
+
+        public Builder setDate(LocalDate date) {
+            this.discontinuity.date = date;
+            return this;
+        }
+
+        public Builder setTime(LocalTime time) {
+            this.discontinuity.time = time;
+            return this;
+        }
+
+        public Discontinuity build() {
+            return copy(discontinuity);
+        }
+
+        private Discontinuity copy(Discontinuity source) {
+            Discontinuity copy = new Discontinuity();
+            copy.date = source.date;
+            copy.time = source.time;
+            return copy;
+        }
     }
 }

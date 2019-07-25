@@ -49,7 +49,7 @@ public class FSLogConsoleApp {
 
         FlightReport previousFlightReport = (FlightReport) lastEntry;
 
-        FlightReport flightReport = new FlightReport();
+        //FlightReport flightReport = new FlightReport();
 
         System.out.print("Specify date of flight: ");
 //        flightReport.setDate(readDate());

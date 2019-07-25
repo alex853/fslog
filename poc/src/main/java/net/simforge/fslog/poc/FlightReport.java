@@ -19,17 +19,7 @@ public class FlightReport implements LogBookEntry {
 //    private String comment;
 //    private String remarks;
 
-    public FlightReport() {
-    }
-
-    private FlightReport(FlightReport src) {
-        this.date = src.date;
-        this.departure = src.departure;
-        this.destination = src.destination;
-        this.timeOut = src.timeOut;
-        this.timeOff = src.timeOff;
-        this.timeOn = src.timeOn;
-        this.timeIn = src.timeIn;
+    private FlightReport() {
     }
 
     @Override
@@ -37,69 +27,89 @@ public class FlightReport implements LogBookEntry {
         return date;
     }
 
-    public FlightReport setDate(LocalDate date) {
-        FlightReport copy = new FlightReport(this);
-        copy.date = date;
-        return copy;
-    }
-
     public String getDeparture() {
         return departure;
-    }
-
-    public FlightReport setDeparture(String departure) {
-        FlightReport copy = new FlightReport(this);
-        copy.departure = departure;
-        return copy;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public FlightReport setDestination(String destination) {
-        FlightReport copy = new FlightReport(this);
-        copy.destination = destination;
-        return copy;
-    }
-
     public LocalTime getTimeOut() {
         return timeOut;
-    }
-
-    public FlightReport setTimeOut(LocalTime timeOut) {
-        FlightReport copy = new FlightReport(this);
-        copy.timeOut = timeOut;
-        return copy;
     }
 
     public LocalTime getTimeOff() {
         return timeOut;
     }
 
-    public FlightReport setTimeOff(LocalTime timeOff) {
-        FlightReport copy = new FlightReport(this);
-        copy.timeOff = timeOff;
-        return copy;
-    }
-
     public LocalTime getTimeOn() {
         return timeOut;
-    }
-
-    public FlightReport setTimeOn(LocalTime timeOn) {
-        FlightReport copy = new FlightReport(this);
-        copy.timeOn = timeOn;
-        return copy;
     }
 
     public LocalTime getTimeIn() {
         return timeIn;
     }
 
-    public FlightReport setTimeIn(LocalTime timeIn) {
-        FlightReport copy = new FlightReport(this);
-        copy.timeIn = timeIn;
-        return copy;
+    public static class Builder {
+        private FlightReport flightReport = new FlightReport();
+
+        public Builder() {
+        }
+
+        public Builder(FlightReport flightReport) {
+            this.flightReport = copy(flightReport);
+        }
+
+        public Builder setDate(LocalDate date) {
+            this.flightReport.date = date;
+            return this;
+        }
+
+        public Builder setDeparture(String departure) {
+            this.flightReport.departure = departure;
+            return this;
+        }
+
+        public Builder setDestination(String destination) {
+            this.flightReport.destination = destination;
+            return this;
+        }
+
+        public Builder setTimeOut(LocalTime timeOut) {
+            this.flightReport.timeOut = timeOut;
+            return this;
+        }
+
+        public Builder setTimeOff(LocalTime timeOff) {
+            this.flightReport.timeOff = timeOff;
+            return this;
+        }
+
+        public Builder setTimeOn(LocalTime timeOn) {
+            this.flightReport.timeOn = timeOn;
+            return this;
+        }
+
+        public Builder setTimeIn(LocalTime timeIn) {
+            this.flightReport.timeIn = timeIn;
+            return this;
+        }
+
+        public FlightReport build() {
+            return copy(flightReport);
+        }
+
+        private FlightReport copy(FlightReport source) {
+            FlightReport copy = new FlightReport();
+            copy.date = source.date;
+            copy.departure = source.departure;
+            copy.destination = source.destination;
+            copy.timeOut = source.timeOut;
+            copy.timeOff = source.timeOff;
+            copy.timeOn = source.timeOn;
+            copy.timeIn = source.timeIn;
+            return copy;
+        }
     }
 }

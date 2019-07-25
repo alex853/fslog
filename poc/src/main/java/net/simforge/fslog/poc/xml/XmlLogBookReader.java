@@ -65,9 +65,9 @@ public class XmlLogBookReader {
     }
 
     private static FlightReport readFlightReport(Element element) {
-        FlightReport flightReport = new FlightReport();
+        FlightReport.Builder builder = new FlightReport.Builder();
 
-        flightReport = flightReport
+        builder = builder
                 .setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE))
                 .setDeparture(element.getElementsByTagName("Departure").item(0).getTextContent())
                 .setDestination(element.getElementsByTagName("Destination").item(0).getTextContent())
@@ -76,13 +76,13 @@ public class XmlLogBookReader {
                 .setTimeOn(parseTime(element.getElementsByTagName("TimeOn")))
                 .setTimeIn(parseTime(element.getElementsByTagName("TimeIn")));
 
-        return flightReport;
+        return builder.build();
     }
 
     private static Transfer readTransfer(Element element) {
-        Transfer tranfer = new Transfer();
+        Transfer.Builder builder = new Transfer.Builder();
 
-        tranfer = tranfer
+        builder = builder
                 .setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE))
                 .setDeparture(element.getElementsByTagName("Departure").item(0).getTextContent())
                 .setDestination(element.getElementsByTagName("Destination").item(0).getTextContent());
@@ -91,15 +91,15 @@ public class XmlLogBookReader {
 //        tranfer.setTimeOn(parseTime(element.getElementsByTagName("TimeOn")));
 //        tranfer.setTimeIn(parseTime(element.getElementsByTagName("TimeIn")));
 
-        return tranfer;
+        return builder.build();
     }
 
     private static Discontinuity readDiscontinuity(Element element) {
-        Discontinuity discontinuity = new Discontinuity();
+        Discontinuity.Builder builder = new Discontinuity.Builder();
 
-        discontinuity = discontinuity.setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE));
+        builder.setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE));
 
-        return discontinuity;
+        return builder.build();
     }
 
     private static LocalTime parseTime(NodeList timeNodeList) {
