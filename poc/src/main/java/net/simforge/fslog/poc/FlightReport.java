@@ -1,5 +1,7 @@
 package net.simforge.fslog.poc;
 
+import org.w3c.dom.Node;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -18,6 +20,7 @@ public class FlightReport implements LogBookEntry {
 //    private Integer distance;
 //    private String comment;
 //    private String remarks;
+    private Node restOfXml;
 
     private FlightReport() {
     }
@@ -49,6 +52,10 @@ public class FlightReport implements LogBookEntry {
 
     public LocalTime getTimeIn() {
         return timeIn;
+    }
+
+    public Node getRestOfXml() {
+        return restOfXml;
     }
 
     public static class Builder {
@@ -96,6 +103,11 @@ public class FlightReport implements LogBookEntry {
             return this;
         }
 
+        public Builder setRestOfXml(Node node) {
+            this.flightReport.restOfXml = node.cloneNode(true);
+            return this;
+        }
+
         public FlightReport build() {
             return copy(flightReport);
         }
@@ -109,6 +121,7 @@ public class FlightReport implements LogBookEntry {
             copy.timeOff = source.timeOff;
             copy.timeOn = source.timeOn;
             copy.timeIn = source.timeIn;
+            copy.restOfXml = source.restOfXml.cloneNode(true);
             return copy;
         }
     }

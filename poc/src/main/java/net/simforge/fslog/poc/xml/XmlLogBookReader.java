@@ -67,14 +67,17 @@ public class XmlLogBookReader {
     private static FlightReport readFlightReport(Element element) {
         FlightReport.Builder builder = new FlightReport.Builder();
 
+        Element copy = (Element) element.cloneNode(true);
+
         builder = builder
-                .setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE))
-                .setDeparture(element.getElementsByTagName("Departure").item(0).getTextContent())
-                .setDestination(element.getElementsByTagName("Destination").item(0).getTextContent())
-                .setTimeOut(parseTime(element.getElementsByTagName("TimeOut")))
-                .setTimeOff(parseTime(element.getElementsByTagName("TimeOff")))
-                .setTimeOn(parseTime(element.getElementsByTagName("TimeOn")))
-                .setTimeIn(parseTime(element.getElementsByTagName("TimeIn")));
+                .setDate(readDateAndRemove(copy, "Date"))
+                .setDeparture(readTextAndRemove(copy, "Departure"))
+                .setDestination(readTextAndRemove(copy, "Destination"))
+                .setTimeOut(readTimeAndRemove(copy, "TimeOut"))
+                .setTimeOff(readTimeAndRemove(copy, "TimeOff"))
+                .setTimeOn(readTimeAndRemove(copy, "TimeOn"))
+                .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
+                .setRestOfXml(copy);
 
         return builder.build();
     }
@@ -82,14 +85,17 @@ public class XmlLogBookReader {
     private static Transfer readTransfer(Element element) {
         Transfer.Builder builder = new Transfer.Builder();
 
+        Element copy = (Element) element.cloneNode(true);
+
         builder = builder
-                .setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE))
-                .setDeparture(element.getElementsByTagName("Departure").item(0).getTextContent())
-                .setDestination(element.getElementsByTagName("Destination").item(0).getTextContent());
+                .setDate(readDateAndRemove(copy, "Date"))
+                .setDeparture(readTextAndRemove(copy, "Departure"))
+                .setDestination(readTextAndRemove(copy, "Destination"))
 //        tranfer.setTimeOut(parseTime(element.getElementsByTagName("TimeOut")));
 //        tranfer.setTimeOff(parseTime(element.getElementsByTagName("TimeOff")));
 //        tranfer.setTimeOn(parseTime(element.getElementsByTagName("TimeOn")));
 //        tranfer.setTimeIn(parseTime(element.getElementsByTagName("TimeIn")));
+                .setRestOfXml(copy);
 
         return builder.build();
     }
@@ -97,22 +103,42 @@ public class XmlLogBookReader {
     private static Discontinuity readDiscontinuity(Element element) {
         Discontinuity.Builder builder = new Discontinuity.Builder();
 
+        Element copy = (Element) element.cloneNode(true);
+
         builder
-                .setDate(LocalDate.parse(element.getElementsByTagName("Date").item(0).getTextContent(), DateTimeFormatter.ISO_DATE))
-                .setTime(parseTime(element.getElementsByTagName("Time")));
+                .setDate(readDateAndRemove(copy, "Date"))
+                .setTime(readTimeAndRemove(copy, "Time"))
+                .setRestOfXml(copy);
 
         return builder.build();
     }
 
-    private static LocalTime parseTime(NodeList timeNodeList) {
-        if (timeNodeList == null || timeNodeList.getLength() == 0) {
+    private static String readTextAndRemove(Element copy, String name) {
+        NodeList list = copy.getElementsByTagName(name);
+        if (list == null || list.getLength() == 0) {
             return null;
         }
-        String time = timeNodeList.item(0).getTextContent();
-        if (time == null) {
+        Node node = list.item(0);
+        String text = node.getTextContent();
+        copy.removeChild(node);
+        return text;
+    }
+
+    private static LocalTime readTimeAndRemove(Element copy, String name) {
+        String text = readTextAndRemove(copy, name);
+        if (text == null) {
             return null;
         } else {
-            return LocalTime.parse(time, HHmm);
+            return LocalTime.parse(text, HHmm);
+        }
+    }
+
+    private static LocalDate readDateAndRemove(Element copy, String name) {
+        String text = readTextAndRemove(copy, name);
+        if (text == null) {
+            return null;
+        } else {
+            return LocalDate.parse(text, DateTimeFormatter.ISO_DATE);
         }
     }
 }

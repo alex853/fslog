@@ -1,5 +1,7 @@
 package net.simforge.fslog.poc;
 
+import org.w3c.dom.Node;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -9,6 +11,7 @@ public class Transfer implements LogBookEntry {
     private String destination;
     private LocalTime timeOut;
     private LocalTime timeIn;
+    private Node restOfXml;
 
     private Transfer() {
     }
@@ -32,6 +35,10 @@ public class Transfer implements LogBookEntry {
 
     public LocalTime getTimeIn() {
         return timeIn;
+    }
+
+    public Node getRestOfXml() {
+        return restOfXml;
     }
 
     public static class Builder {
@@ -69,6 +76,11 @@ public class Transfer implements LogBookEntry {
             return this;
         }
 
+        public Builder setRestOfXml(Node node) {
+            this.transfer.restOfXml = node.cloneNode(true);
+            return this;
+        }
+
         public Transfer build() {
             return copy(transfer);
         }
@@ -80,6 +92,7 @@ public class Transfer implements LogBookEntry {
             copy.destination = source.destination;
             copy.timeOut = source.timeOut;
             copy.timeIn = source.timeIn;
+            copy.restOfXml = source.restOfXml.cloneNode(true);
             return copy;
         }
     }
