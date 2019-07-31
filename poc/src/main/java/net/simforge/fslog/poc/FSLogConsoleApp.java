@@ -1,6 +1,6 @@
 package net.simforge.fslog.poc;
 
-import net.simforge.fslog.poc.xml.XmlLogBookReader;
+import net.simforge.fslog.poc.xml.XmlLogBookIO;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -164,7 +164,7 @@ public class FSLogConsoleApp {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        return XmlLogBookReader.readLogBook(fis);
+        return XmlLogBookIO.readLogBook(fis);
     }
 
     private static void saveLogBook(LogBook logBook) {
