@@ -59,7 +59,7 @@ public class Discontinuity implements LogBookEntry {
             Discontinuity copy = new Discontinuity();
             copy.date = source.date;
             copy.time = source.time;
-            copy.restOfXml = source.restOfXml.cloneNode(true);
+            copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
             return copy;
         }
     }

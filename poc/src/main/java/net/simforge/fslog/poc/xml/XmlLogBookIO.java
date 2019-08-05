@@ -16,6 +16,8 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -49,14 +51,20 @@ public class XmlLogBookIO {
 
                 Element element = (Element) childNode;
                 String tagName = element.getTagName();
+                LogBookEntry entry;
                 if (tagName.equals("FlightReport")) {
-                    logBook.add(readFlightReport(element));
+                    entry = readFlightReport(element);
                 } else if (tagName.equals("Transfer")) {
-                    logBook.add(readTransfer(element));
+                    entry = readTransfer(element);
                 } else if (tagName.equals("Discontinuity")) {
-                    logBook.add(readDiscontinuity(element));
+                    entry = readDiscontinuity(element);
                 } else {
                     throw new IllegalArgumentException();
+                }
+
+                ValidationResult result = logBook.add(entry);
+                if (result.getOverallResult() != ValidationResult.Result.OK) {
+                    throw new IllegalStateException();
                 }
             }
 
@@ -153,10 +161,10 @@ public class XmlLogBookIO {
                 .setDate(readDateAndRemove(copy, "Date"))
                 .setDeparture(readTextAndRemove(copy, "Departure"))
                 .setDestination(readTextAndRemove(copy, "Destination"))
-//        tranfer.setTimeOut(parseTime(element.getElementsByTagName("TimeOut")));
-//        tranfer.setTimeOff(parseTime(element.getElementsByTagName("TimeOff")));
-//        tranfer.setTimeOn(parseTime(element.getElementsByTagName("TimeOn")));
-//        tranfer.setTimeIn(parseTime(element.getElementsByTagName("TimeIn")));
+                .setTimeOut(readTimeAndRemove(copy, "TimeOut"))
+                .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
+                .setMethod(readEnumAndRemove(copy, "Method", Transfer.Method.class))
+                .setStatus(readEnumAndRemove(copy, "Status", Transfer.Status.class))
                 .setRestOfXml(copy);
 
         return builder.build();
@@ -177,6 +185,14 @@ public class XmlLogBookIO {
             writeText(element, "Departure", transfer.getDeparture());
         if (transfer.getDestination() != null)
             writeText(element, "Destination", transfer.getDestination());
+        if (transfer.getTimeOut() != null)
+            writeText(element, "TimeOut", HHmm.format(transfer.getTimeOut()));
+        if (transfer.getTimeIn() != null)
+            writeText(element, "TimeIn", HHmm.format(transfer.getTimeIn()));
+        if (transfer.getMethod() != null)
+            writeText(element, "Method", transfer.getMethod().code());
+        if (transfer.getStatus() != null)
+            writeText(element, "Status", transfer.getStatus().code());
     }
 
     private static Discontinuity readDiscontinuity(Element element) {
@@ -240,6 +256,26 @@ public class XmlLogBookIO {
             return null;
         } else {
             return LocalDate.parse(text, DateTimeFormatter.ISO_DATE);
+        }
+    }
+
+    private static <T> T readEnumAndRemove(Element copy, String name, Class clazz) {
+        String text = readTextAndRemove(copy, name);
+        if (text == null) {
+            return null;
+        } else {
+            Method byCode;
+            try {
+                byCode = clazz.getMethod("byCode", String.class);
+                T result = (T) byCode.invoke(null, text);
+                if (result != null) {
+                    return result;
+                } else {
+                    throw new IllegalArgumentException("Could not find " + clazz.getSimpleName() + " enum value by '" + text + "' code");
+                }
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+                throw new IllegalArgumentException(e);
+            }
         }
     }
 }

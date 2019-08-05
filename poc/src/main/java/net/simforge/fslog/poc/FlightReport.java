@@ -5,7 +5,7 @@ import org.w3c.dom.Node;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class FlightReport implements LogBookEntry {
+public class FlightReport implements LogBookEntry, Movement {
     private LocalDate date;
 //    private String callsign;
 //    private String flightNumber;
@@ -30,14 +30,17 @@ public class FlightReport implements LogBookEntry {
         return date;
     }
 
+    @Override
     public String getDeparture() {
         return departure;
     }
 
+    @Override
     public String getDestination() {
         return destination;
     }
 
+    @Override
     public LocalTime getTimeOut() {
         return timeOut;
     }
@@ -50,6 +53,7 @@ public class FlightReport implements LogBookEntry {
         return timeOn;
     }
 
+    @Override
     public LocalTime getTimeIn() {
         return timeIn;
     }
@@ -121,7 +125,7 @@ public class FlightReport implements LogBookEntry {
             copy.timeOff = source.timeOff;
             copy.timeOn = source.timeOn;
             copy.timeIn = source.timeIn;
-            copy.restOfXml = source.restOfXml.cloneNode(true);
+            copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
             return copy;
         }
     }

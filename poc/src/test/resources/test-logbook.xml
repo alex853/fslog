@@ -8,10 +8,10 @@
         <Date>2019-04-15</Date>
         <Method>flights</Method>
         <Departure>KBFL</Departure>
-        <Destination>EGTB</Destination>
+        <Destination>EGSF</Destination>
         <TimeOut>12:00</TimeOut>
         <Status>done</Status>
-        <Comment>Flight to EGTB for IFT flying lessons</Comment>
+        <Comment>Flight to EGTB/EGSF for IFT flying lessons</Comment>
         <Finances>
             <Sponsor>self</Sponsor>
         </Finances>

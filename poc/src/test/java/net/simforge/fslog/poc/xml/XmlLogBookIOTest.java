@@ -40,7 +40,7 @@ public class XmlLogBookIOTest {
 
         assertEquals(LocalDate.of(2019, 4, 15), transfer.getDate());
         assertEquals("KBFL", transfer.getDeparture());
-        assertEquals("EGTB", transfer.getDestination());
+        assertEquals("EGSF", transfer.getDestination());
     }
 
     @Test

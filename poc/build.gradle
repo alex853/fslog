@@ -7,15 +7,15 @@ apply plugin: 'java'
 repositories {
     mavenCentral()
     mavenLocal()
-//    maven {
-//        url System.getenv('SIMFORGE_REPO_READ_URL')
-//    }
+    maven {
+        url System.getenv('SIMFORGE_REPO_READ_URL')
+    }
 }
 
 dependencies {
 //    compile project(':datafeeder')
 
-//    compile group: 'net.simforge', name: 'simforge-commons', version: '1.0.3'
+    compile group: 'net.simforge', name: 'simforge-commons', version: '1.0.3'
 //    compile group: 'net.simforge', name: 'simforge-commons-ext', version: '1.0.1'
 
 //    compile group: 'com.google.guava', name: 'guava', version: '21.0'
