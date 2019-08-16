@@ -14,11 +14,11 @@ public class LogBook {
     }
 
     public void compute() {
-        LogBookEntry prev = null;
-        LogBookEntry next = null;
         for (int i = 0; i < entries.size(); i++) {
             LogBookEntry entry = entries.get(i);
 
+            LogBookEntry prev = null;
+            LogBookEntry next = null;
             if (i > 0) {
                 prev = entries.get(i - 1);
             }

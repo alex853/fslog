@@ -4,6 +4,12 @@ import net.simforge.fslog.poc.xml.XmlLogBookIO;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,8 +20,11 @@ public class FSLogConsoleApp {
 
     public static final DateTimeFormatter HHmm = DateTimeFormatter.ofPattern("HH:mm");
 
+    private static final String filename = "C:\\Dropbox\\Dev\\FSLog\\xml\\alexey.xml";
+
     public static void main(String[] args) {
         LogBook logBook = loadLogBook();
+        logBook.compute();
         printLogBook(logBook);
 
         Scanner scanner = new Scanner(System.in);
@@ -44,11 +53,11 @@ public class FSLogConsoleApp {
             throw new IllegalStateException("Adding to empty logbook is supported");
         }
 
-        if (!(lastEntry instanceof FlightReport)) {
+        if (!(lastEntry instanceof Movement)) {
             throw new IllegalStateException("Previous entry should be flight report");
         }
 
-        FlightReport previousFlightReport = (FlightReport) lastEntry;
+        Movement previousMovement = (Movement) lastEntry;
 
         FlightReport.Builder builder = new FlightReport.Builder();
 
@@ -68,8 +77,8 @@ public class FSLogConsoleApp {
         // todo check legality of date
         builder.setDate(date);
 
-        System.out.println("Departure airport is: " + previousFlightReport.getDestination() + " (destination of last flight)");
-        builder.setDeparture(previousFlightReport.getDestination());
+        System.out.println("Departure airport is: " + previousMovement.getDestination() + " (destination of last flight)");
+        builder.setDeparture(previousMovement.getDestination());
 
         System.out.print("Specify destination airport: ");
         String destination = scanner.nextLine();
@@ -111,10 +120,13 @@ public class FSLogConsoleApp {
     private static void printLogBook(LogBook logBook) {
         List<LogBookEntry> entries = logBook.getEntries();
 
+        int number = 0;
         for (LogBookEntry entry : entries) {
+            number++;
             if (entry instanceof FlightReport) {
                 FlightReport flight = (FlightReport) entry;
-                System.out.println(String.format("Flight    %s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                System.out.println(String.format("%3d   Flight    %s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                        number,
                         flight.getDate().format(DateTimeFormatter.ISO_DATE),
                         flight.getDeparture(),
                         flight.getDestination(),
@@ -129,14 +141,15 @@ public class FSLogConsoleApp {
                 ));
             } else if (entry instanceof Transfer) {
                 Transfer transfer = (Transfer) entry;
-                System.out.println(String.format("TRANSFER  %s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                System.out.println(String.format("%3d   TRANSFER  %s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                        number,
                         transfer.getDate().format(DateTimeFormatter.ISO_DATE),
                         transfer.getDeparture(),
                         transfer.getDestination(),
-                        printTime(null/*transfer.getTimeOut()*/),
-                        printTime(null/*transfer.getTimeOff()*/),
-                        printTime(null/*transfer.getTimeOn()*/),
-                        printTime(null/*transfer.getTimeIn()*/),
+                        printTime(transfer.getTimeOut()),
+                        printTime(null),
+                        printTime(null),
+                        transfer.getStatus() == Transfer.Status.DONE ? printTime(transfer.getTimeIn()) : "-=|=-",
                         "-", 0.0, 0.0
 //                        LocalTime.MIDNIGHT.plusSeconds(transfer.getDuration().getSeconds()).format(HHmm),
 //                        transfer.getPilotMoney(),
@@ -144,7 +157,8 @@ public class FSLogConsoleApp {
                 ));
             } else if (entry instanceof Discontinuity) {
                 Discontinuity discontinuity = (Discontinuity) entry;
-                System.out.println(String.format("==|==|==  %s",
+                System.out.println(String.format("%3d   ==|==|==  %s",
+                        number,
                         discontinuity.getDate().format(DateTimeFormatter.ISO_DATE)
                 ));
             } else {
@@ -160,7 +174,7 @@ public class FSLogConsoleApp {
     private static LogBook loadLogBook() {
         FileInputStream fis;
         try {
-            fis = new FileInputStream("C:\\Dropbox\\Dev\\FSLog\\xml\\alexey.xml");
+            fis = new FileInputStream(filename);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -168,6 +182,16 @@ public class FSLogConsoleApp {
     }
 
     private static void saveLogBook(LogBook logBook) {
+        Path original = Paths.get(filename);
+        Path copy = Paths.get(filename.replace(".xml", "." + System.currentTimeMillis() + ".xml"));
+        try {
+            Files.copy(original, copy, StandardCopyOption.REPLACE_EXISTING);
 
+            FileOutputStream fos = new FileOutputStream(filename);
+            XmlLogBookIO.writeLogBook(logBook, fos);
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
