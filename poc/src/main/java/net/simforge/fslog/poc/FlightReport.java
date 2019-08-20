@@ -9,8 +9,8 @@ public class FlightReport implements LogBookEntry, Movement {
     private LocalDate date;
 //    private String callsign;
 //    private String flightNumber;
-//    private String aircraftType;
-//    private String aircraftRegistration;
+    private String aircraftType;
+    private String aircraftRegistration;
     private String departure;
     private String destination;
     private LocalTime timeOut;
@@ -28,6 +28,14 @@ public class FlightReport implements LogBookEntry, Movement {
     @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getAircraftType() {
+        return aircraftType;
+    }
+
+    public String getAircraftRegistration() {
+        return aircraftRegistration;
     }
 
     @Override
@@ -77,6 +85,16 @@ public class FlightReport implements LogBookEntry, Movement {
             return this;
         }
 
+        public Builder setAircraftType(String aircraftType) {
+            this.flightReport.aircraftType = aircraftType;
+            return this;
+        }
+
+        public Builder setAircraftRegistration(String aircraftRegistration) {
+            this.flightReport.aircraftRegistration = aircraftRegistration;
+            return this;
+        }
+
         public Builder setDeparture(String departure) {
             this.flightReport.departure = departure;
             return this;
@@ -119,6 +137,8 @@ public class FlightReport implements LogBookEntry, Movement {
         private FlightReport copy(FlightReport source) {
             FlightReport copy = new FlightReport();
             copy.date = source.date;
+            copy.aircraftType = source.aircraftType;
+            copy.aircraftRegistration = source.aircraftRegistration;
             copy.departure = source.departure;
             copy.destination = source.destination;
             copy.timeOut = source.timeOut;

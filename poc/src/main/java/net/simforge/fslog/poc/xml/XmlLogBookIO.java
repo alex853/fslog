@@ -116,6 +116,8 @@ public class XmlLogBookIO {
 
         builder = builder
                 .setDate(readDateAndRemove(copy, "Date"))
+                .setAircraftType(readTextAndRemove(copy, "AircraftType"))
+                .setAircraftRegistration(readTextAndRemove(copy, "AircraftRegistration"))
                 .setDeparture(readTextAndRemove(copy, "Departure"))
                 .setDestination(readTextAndRemove(copy, "Destination"))
                 .setTimeOut(readTimeAndRemove(copy, "TimeOut"))
@@ -138,6 +140,10 @@ public class XmlLogBookIO {
 
         if (flightReport.getDate() != null)
             writeText(element, "Date", DateTimeFormatter.ISO_DATE.format(flightReport.getDate()));
+        if (flightReport.getAircraftType() != null)
+            writeText(element, "AircraftType", flightReport.getAircraftType());
+        if (flightReport.getAircraftRegistration() != null)
+            writeText(element, "AircraftRegistration", flightReport.getAircraftRegistration());
         if (flightReport.getDeparture() != null)
             writeText(element, "Departure", flightReport.getDeparture());
         if (flightReport.getDestination() != null)

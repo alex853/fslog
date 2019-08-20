@@ -22,6 +22,8 @@ public class FSLogConsoleApp {
 
     private static final String filename = "C:\\Dropbox\\Dev\\FSLog\\xml\\alexey.xml";
 
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         LogBook logBook = loadLogBook();
         logBook.compute();
@@ -31,10 +33,10 @@ public class FSLogConsoleApp {
 
         while (true) {
 
-            System.out.print("[A]dd, [S]ave, [Q]uit: ");
+            System.out.print("[F]light, [S]ave, [Q]uit: ");
             String selectedAction = scanner.nextLine();
 
-            if (selectedAction.equalsIgnoreCase("a")) {
+            if (selectedAction.equalsIgnoreCase("f")) {
                 addFlight(logBook);
             } else if (selectedAction.equalsIgnoreCase("s")) {
                 saveLogBook(logBook);
@@ -46,27 +48,44 @@ public class FSLogConsoleApp {
     }
 
     private static void addFlight(LogBook logBook) {
-        List<LogBookEntry> entries = logBook.getEntries();
-        LogBookEntry lastEntry = entries.isEmpty() ? null : entries.get(entries.size() - 1);
-
-        if (lastEntry == null) {
-            throw new IllegalStateException("Adding to empty logbook is supported");
-        }
-
-        if (!(lastEntry instanceof Movement)) {
-            throw new IllegalStateException("Previous entry should be flight report");
-        }
-
-        Movement previousMovement = (Movement) lastEntry;
-
-        FlightReport.Builder builder = new FlightReport.Builder();
-
         System.out.println();
         System.out.println("Adding flight.....");
         System.out.println();
 
+        Movement previousMovement = null;
+        int position;
+
+        List<LogBookEntry> entries = logBook.getEntries();
+        if (!entries.isEmpty()) {
+            System.out.print("Specify ## of flight AFTER which you are going to add flight (or empty for adding to tail, or 0 to add as first entry): ");
+            String s = scanner.nextLine();
+
+            if (s == null || s.trim().length() == 0) {
+                position = entries.size();
+            } else {
+                position = Integer.parseInt(s);
+            }
+
+            LogBookEntry previousEntry = position >= 1 ? entries.get(position - 1) : null;
+            LogBookEntry nextEntry = position < entries.size() ? entries.get(position) : null;
+
+            if (previousEntry instanceof Movement) {
+                previousMovement = (Movement) previousEntry;
+            }
+
+            if (nextEntry != null) {
+                if (!(nextEntry instanceof Discontinuity)) {
+                    System.out.println("Unable to insert new flight before flight or transfer, it should be discontinuity only");
+                    return;
+                }
+            }
+        } else {
+            position = 0;
+        }
+
+        FlightReport.Builder builder = new FlightReport.Builder();
+
         System.out.print("Specify date of flight (or empty string for current date): ");
-        Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine();
         LocalDate date;
         if (s == null || s.trim().length() == 0) {
@@ -77,8 +96,28 @@ public class FSLogConsoleApp {
         // todo check legality of date
         builder.setDate(date);
 
-        System.out.println("Departure airport is: " + previousMovement.getDestination() + " (destination of last flight)");
-        builder.setDeparture(previousMovement.getDestination());
+        System.out.print("Specify aircraft type: ");
+        String aircraftType = scanner.nextLine();
+        // todo check correctness
+        aircraftType = aircraftType.toUpperCase().trim();
+        builder.setAircraftType(aircraftType);
+
+        System.out.print("Specify aircraft registration: ");
+        String aircraftRegistration = scanner.nextLine();
+        // todo check correctness
+        aircraftRegistration = aircraftRegistration.toUpperCase().trim();
+        builder.setAircraftRegistration(aircraftRegistration);
+
+        if (previousMovement != null) {
+            System.out.println("Departure airport is: " + previousMovement.getDestination() + " (destination of last flight)");
+            builder.setDeparture(previousMovement.getDestination());
+        } else {
+            System.out.print("Specify departure airport: ");
+            String departure = scanner.nextLine();
+            // todo check departure correctness
+            departure = departure.toUpperCase().trim();
+            builder.setDeparture(departure);
+        }
 
         System.out.print("Specify destination airport: ");
         String destination = scanner.nextLine();
@@ -104,12 +143,13 @@ public class FSLogConsoleApp {
         // todo check not null
         // todo check it is not earlier than ON or OFF or OUT
 
-        logBook.add(builder.build());
+        FlightReport newFlightReport = builder.build();
+//        logBook.add(newFlightReport);
+        logBook.insert(position, newFlightReport);
         printLogBook(logBook);
     }
 
     private static LocalTime readTime() {
-        Scanner scanner = new Scanner(System.in);
         String time = scanner.nextLine();
         if (time == null || time.trim().length() == 0) {
             return null;
@@ -125,9 +165,11 @@ public class FSLogConsoleApp {
             number++;
             if (entry instanceof FlightReport) {
                 FlightReport flight = (FlightReport) entry;
-                System.out.println(String.format("%3d   Flight    %s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                System.out.println(String.format("%3d   Flight    %s %5s %10s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
                         number,
                         flight.getDate().format(DateTimeFormatter.ISO_DATE),
+                        flight.getAircraftType(),
+                        flight.getAircraftRegistration(),
                         flight.getDeparture(),
                         flight.getDestination(),
                         printTime(flight.getTimeOut()),
@@ -141,9 +183,11 @@ public class FSLogConsoleApp {
                 ));
             } else if (entry instanceof Transfer) {
                 Transfer transfer = (Transfer) entry;
-                System.out.println(String.format("%3d   TRANSFER  %s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                System.out.println(String.format("%3d   TRANSFER  %s %5s %10s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
                         number,
                         transfer.getDate().format(DateTimeFormatter.ISO_DATE),
+                        "",
+                        "",
                         transfer.getDeparture(),
                         transfer.getDestination(),
                         printTime(transfer.getTimeOut()),

@@ -110,6 +110,28 @@ public class LogBook {
         return result;
     }
 
+    public ValidationResult insert(int position, LogBookEntry entry) {
+        compute();
+
+        if (entries.isEmpty()) {
+            entries.add(entry);
+            return ValidationResult.OK;
+        }
+
+        LogBookEntry previous = position > 0 ? entries.get(position - 1) : null;
+        LogBookEntry next = entries.get(position);
+
+        ValidationResult validationAgainstPrevious = validate(previous, entry);
+        ValidationResult validationAgainstNext = validate(entry, next);
+        ValidationResult result = ValidationResult.combine(validationAgainstPrevious, validationAgainstNext);
+
+        if (result.getOverallResult() == ValidationResult.Result.OK) {
+            entries.add(position, entry);
+        }
+
+        return result;
+    }
+
     private ValidationResult validate(LogBookEntry entry1, LogBookEntry entry2) {
         if (entry1 instanceof Movement && entry2 instanceof Movement) {
             return validate((Movement) entry1, (Movement) entry2);
