@@ -209,6 +209,7 @@ public class XmlLogBookIO {
         builder
                 .setDate(readDateAndRemove(copy, "Date"))
                 .setTime(readTimeAndRemove(copy, "Time"))
+                .setComment(readTextAndRemove(copy, "Comment"))
                 .setRestOfXml(copy);
 
         return builder.build();
@@ -227,6 +228,8 @@ public class XmlLogBookIO {
             writeText(element, "Date", DateTimeFormatter.ISO_DATE.format(discontinuity.getDate()));
         if (discontinuity.getTime() != null)
             writeText(element, "Time", HHmm.format(discontinuity.getTime()));
+        if (discontinuity.getComment() != null)
+            writeText(element, "Comment", discontinuity.getComment());
     }
 
     private static String readTextAndRemove(Element copy, String name) {

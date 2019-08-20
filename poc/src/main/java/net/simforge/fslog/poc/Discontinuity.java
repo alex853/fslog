@@ -8,6 +8,7 @@ import java.time.LocalTime;
 public class Discontinuity implements LogBookEntry {
     private LocalDate date;
     private LocalTime time;
+    private String comment;
     private Node restOfXml;
 
     private Discontinuity() {
@@ -20,6 +21,10 @@ public class Discontinuity implements LogBookEntry {
 
     public LocalTime getTime() {
         return time;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
     public Node getRestOfXml() {
@@ -46,6 +51,11 @@ public class Discontinuity implements LogBookEntry {
             return this;
         }
 
+        public Builder setComment(String comment) {
+            this.discontinuity.comment = comment;
+            return this;
+        }
+
         public Builder setRestOfXml(Node node) {
             this.discontinuity.restOfXml = node.cloneNode(true);
             return this;
@@ -59,6 +69,7 @@ public class Discontinuity implements LogBookEntry {
             Discontinuity copy = new Discontinuity();
             copy.date = source.date;
             copy.time = source.time;
+            copy.comment = source.comment;
             copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
             return copy;
         }

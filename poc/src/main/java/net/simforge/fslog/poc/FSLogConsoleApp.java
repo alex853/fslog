@@ -33,11 +33,13 @@ public class FSLogConsoleApp {
 
         while (true) {
 
-            System.out.print("[F]light, [S]ave, [Q]uit: ");
+            System.out.print("Add [F]light, Add [D]iscontinuity, [S]ave, or [Q]uit: ");
             String selectedAction = scanner.nextLine();
 
             if (selectedAction.equalsIgnoreCase("f")) {
                 addFlight(logBook);
+            } else if (selectedAction.equalsIgnoreCase("d")) {
+                addDiscontinuity(logBook);
             } else if (selectedAction.equalsIgnoreCase("s")) {
                 saveLogBook(logBook);
             } else if (selectedAction.equalsIgnoreCase("q")) {
@@ -149,6 +151,39 @@ public class FSLogConsoleApp {
         printLogBook(logBook);
     }
 
+    private static void addDiscontinuity(LogBook logBook) {
+        System.out.println();
+        System.out.println("Adding discontinuity.....");
+        System.out.println();
+
+        Movement previousMovement = null;
+        int position;
+
+        List<LogBookEntry> entries = logBook.getEntries();
+        if (!entries.isEmpty()) {
+            System.out.print("Specify ## of entry AFTER which you are going to add discontinuity (or empty for adding to tail, or 0 to add as first entry): ");
+            String s = scanner.nextLine();
+
+            if (s == null || s.trim().length() == 0) {
+                position = entries.size();
+            } else {
+                position = Integer.parseInt(s);
+            }
+        } else {
+            position = 0;
+        }
+
+        Discontinuity.Builder builder = new Discontinuity.Builder();
+
+        System.out.print("Specify comment: ");
+        String comment = scanner.nextLine();
+        builder.setComment(comment);
+
+        Discontinuity newDiscontinuity = builder.build();
+        logBook.insert(position, newDiscontinuity);
+        printLogBook(logBook);
+    }
+
     private static LocalTime readTime() {
         String time = scanner.nextLine();
         if (time == null || time.trim().length() == 0) {
@@ -201,9 +236,9 @@ public class FSLogConsoleApp {
                 ));
             } else if (entry instanceof Discontinuity) {
                 Discontinuity discontinuity = (Discontinuity) entry;
-                System.out.println(String.format("%3d   ==|==|==  %s",
+                System.out.println(String.format("%3d   ==|==|==|==|==|==|== %s",
                         number,
-                        discontinuity.getDate().format(DateTimeFormatter.ISO_DATE)
+                        discontinuity.getComment() != null ? discontinuity.getComment() : ""
                 ));
             } else {
                 throw new IllegalArgumentException();

@@ -78,6 +78,16 @@ public class LogBookTest {
         assertEquals(OK, result.getOverallResult());
     }
 
+    @Test
+    public void testInsertCorrectDiscontinuityBetweenFlights() {
+        LogBook logBook = new LogBook();
+
+        logBook.add(flight(LocalDate.of(2019, 8, 2), "EGKK", "EGTB", LocalTime.of(10, 0), LocalTime.of(11, 0)));
+        logBook.add(flight(LocalDate.of(2019, 8, 3), "EGTB", "EGKK", LocalTime.of(10, 0), LocalTime.of(11, 0)));
+        ValidationResult result = logBook.insert(1, discontinuity());
+        assertEquals(OK, result.getOverallResult());
+    }
+
     private FlightReport flight(LocalDate date, String dep, String dest, LocalTime out, LocalTime in) {
         return new FlightReport.Builder()
                 .setDate(date)
