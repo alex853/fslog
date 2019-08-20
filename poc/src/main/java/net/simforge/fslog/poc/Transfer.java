@@ -62,6 +62,7 @@ public class Transfer implements LogBookEntry, Movement {
     private LocalTime timeIn;
     private Method method;
     private Status status;
+    private String comment;
     private Node restOfXml;
 
     private Transfer() {
@@ -98,6 +99,10 @@ public class Transfer implements LogBookEntry, Movement {
 
     public Status getStatus() {
         return status;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
     public Node getRestOfXml() {
@@ -149,6 +154,11 @@ public class Transfer implements LogBookEntry, Movement {
             return this;
         }
 
+        public Builder setComment(String comment) {
+            this.transfer.comment = comment;
+            return this;
+        }
+
         public Builder setRestOfXml(Node node) {
             this.transfer.restOfXml = node.cloneNode(true);
             return this;
@@ -167,6 +177,7 @@ public class Transfer implements LogBookEntry, Movement {
             copy.timeIn = source.timeIn;
             copy.method = source.method;
             copy.status = source.status;
+            copy.comment = source.comment;
             copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
             return copy;
         }

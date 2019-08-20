@@ -212,27 +212,28 @@ public class FSLogConsoleApp {
             number++;
             if (entry instanceof FlightReport) {
                 FlightReport flight = (FlightReport) entry;
-                System.out.println(String.format("%3d   Flight    %s %5s %10s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                System.out.println(String.format("%3d   Flight    %s %10s %10s %5s %10s %5s %5s   %s  %s  %s  %s  %s",
                         number,
                         flight.getDate().format(DateTimeFormatter.ISO_DATE),
-                        flight.getAircraftType(),
-                        flight.getAircraftRegistration(),
-                        flight.getDeparture(),
-                        flight.getDestination(),
+                        m(flight.getCallsign()),
+                        m(flight.getFlightNumber()),
+                        m(flight.getAircraftType()),
+                        m(flight.getAircraftRegistration()),
+                        m(flight.getDeparture()),
+                        m(flight.getDestination()),
                         printTime(flight.getTimeOut()),
                         printTime(flight.getTimeOff()),
                         printTime(flight.getTimeOn()),
                         printTime(flight.getTimeIn()),
-                        "-", 0.0, 0.0
-//                        LocalTime.MIDNIGHT.plusSeconds(flight.getDuration().getSeconds()).format(HHmm),
-//                        flight.getPilotMoney(),
-//                        pilotStatus.getAccount()
+                        m(flight.getComment())
                 ));
             } else if (entry instanceof Transfer) {
                 Transfer transfer = (Transfer) entry;
-                System.out.println(String.format("%3d   TRANSFER  %s %5s %10s %5s %5s   %s  %s  %s  %s  %s             %10.2f %10.2f",
+                System.out.println(String.format("%3d   TRANSFER  %s %10s %10s %5s %10s %5s %5s   %s  %s  %s  %s  %s",
                         number,
                         transfer.getDate().format(DateTimeFormatter.ISO_DATE),
+                        "",
+                        "",
                         "",
                         "",
                         transfer.getDeparture(),
@@ -241,16 +242,13 @@ public class FSLogConsoleApp {
                         printTime(null),
                         printTime(null),
                         transfer.getStatus() == Transfer.Status.DONE ? printTime(transfer.getTimeIn()) : "-=|=-",
-                        "-", 0.0, 0.0
-//                        LocalTime.MIDNIGHT.plusSeconds(transfer.getDuration().getSeconds()).format(HHmm),
-//                        transfer.getPilotMoney(),
-//                        pilotStatus.getAccount()
+                        m(transfer.getComment())
                 ));
             } else if (entry instanceof Discontinuity) {
                 Discontinuity discontinuity = (Discontinuity) entry;
                 System.out.println(String.format("%3d   ==|==|==|==|==|==|== %s",
                         number,
-                        discontinuity.getComment() != null ? discontinuity.getComment() : ""
+                        m(discontinuity.getComment())
                 ));
             } else {
                 throw new IllegalArgumentException();
@@ -260,6 +258,14 @@ public class FSLogConsoleApp {
 
     private static String printTime(LocalTime time) {
         return time != null ? time.format(HHmm) : "     ";
+    }
+
+    private static String m(String s) {
+        return m(s, "");
+    }
+
+    private static String m(String s, String def) {
+        return s != null ? s : def;
     }
 
     private static LogBook loadLogBook() {

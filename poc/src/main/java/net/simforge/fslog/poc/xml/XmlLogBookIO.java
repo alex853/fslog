@@ -126,6 +126,7 @@ public class XmlLogBookIO {
                 .setTimeOff(readTimeAndRemove(copy, "TimeOff"))
                 .setTimeOn(readTimeAndRemove(copy, "TimeOn"))
                 .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
+                .setComment(readTextAndRemove(copy, "Comment"))
                 .setRestOfXml(copy);
 
         return builder.build();
@@ -162,6 +163,8 @@ public class XmlLogBookIO {
             writeText(element, "TimeOn", HHmm.format(flightReport.getTimeOn()));
         if (flightReport.getTimeIn() != null)
             writeText(element, "TimeIn", HHmm.format(flightReport.getTimeIn()));
+        if (flightReport.getComment() != null)
+            writeText(element, "Comment", flightReport.getComment());
     }
 
     private static Transfer readTransfer(Element element) {
@@ -177,6 +180,7 @@ public class XmlLogBookIO {
                 .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
                 .setMethod(readEnumAndRemove(copy, "Method", Transfer.Method.class))
                 .setStatus(readEnumAndRemove(copy, "Status", Transfer.Status.class))
+                .setComment(readTextAndRemove(copy, "Comment"))
                 .setRestOfXml(copy);
 
         return builder.build();
@@ -205,6 +209,8 @@ public class XmlLogBookIO {
             writeText(element, "Method", transfer.getMethod().code());
         if (transfer.getStatus() != null)
             writeText(element, "Status", transfer.getStatus().code());
+        if (transfer.getComment() != null)
+            writeText(element, "Comment", transfer.getComment());
     }
 
     private static Discontinuity readDiscontinuity(Element element) {
