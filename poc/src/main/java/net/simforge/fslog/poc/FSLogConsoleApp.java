@@ -98,6 +98,18 @@ public class FSLogConsoleApp {
         // todo check legality of date
         builder.setDate(date);
 
+        System.out.print("Specify callsign: ");
+        String callsign = scanner.nextLine();
+        // todo check correctness
+        callsign = callsign.toUpperCase().trim();
+        builder.setCallsign(callsign);
+
+        System.out.print("Specify flight number: ");
+        String flightNumber = scanner.nextLine();
+        // todo check correctness
+        flightNumber = flightNumber.toUpperCase().trim();
+        builder.setFlightNumber(flightNumber);
+
         System.out.print("Specify aircraft type: ");
         String aircraftType = scanner.nextLine();
         // todo check correctness

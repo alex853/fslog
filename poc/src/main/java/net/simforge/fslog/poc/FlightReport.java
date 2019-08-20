@@ -7,8 +7,8 @@ import java.time.LocalTime;
 
 public class FlightReport implements LogBookEntry, Movement {
     private LocalDate date;
-//    private String callsign;
-//    private String flightNumber;
+    private String callsign;
+    private String flightNumber;
     private String aircraftType;
     private String aircraftRegistration;
     private String departure;
@@ -28,6 +28,14 @@ public class FlightReport implements LogBookEntry, Movement {
     @Override
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getCallsign() {
+        return callsign;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
     }
 
     public String getAircraftType() {
@@ -85,6 +93,16 @@ public class FlightReport implements LogBookEntry, Movement {
             return this;
         }
 
+        public Builder setCallsign(String callsign) {
+            this.flightReport.callsign = callsign;
+            return this;
+        }
+
+        public Builder setFlightNumber(String flightNumber) {
+            this.flightReport.flightNumber = flightNumber;
+            return this;
+        }
+
         public Builder setAircraftType(String aircraftType) {
             this.flightReport.aircraftType = aircraftType;
             return this;
@@ -137,6 +155,8 @@ public class FlightReport implements LogBookEntry, Movement {
         private FlightReport copy(FlightReport source) {
             FlightReport copy = new FlightReport();
             copy.date = source.date;
+            copy.callsign = source.callsign;
+            copy.flightNumber = source.flightNumber;
             copy.aircraftType = source.aircraftType;
             copy.aircraftRegistration = source.aircraftRegistration;
             copy.departure = source.departure;

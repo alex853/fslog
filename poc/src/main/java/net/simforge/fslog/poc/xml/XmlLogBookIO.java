@@ -116,6 +116,8 @@ public class XmlLogBookIO {
 
         builder = builder
                 .setDate(readDateAndRemove(copy, "Date"))
+                .setCallsign(readTextAndRemove(copy, "Callsign"))
+                .setFlightNumber(readTextAndRemove(copy, "FlightNumber"))
                 .setAircraftType(readTextAndRemove(copy, "AircraftType"))
                 .setAircraftRegistration(readTextAndRemove(copy, "AircraftRegistration"))
                 .setDeparture(readTextAndRemove(copy, "Departure"))
@@ -140,6 +142,10 @@ public class XmlLogBookIO {
 
         if (flightReport.getDate() != null)
             writeText(element, "Date", DateTimeFormatter.ISO_DATE.format(flightReport.getDate()));
+        if (flightReport.getCallsign() != null)
+            writeText(element, "Callsign", flightReport.getCallsign());
+        if (flightReport.getFlightNumber() != null)
+            writeText(element, "FlightNumber", flightReport.getFlightNumber());
         if (flightReport.getAircraftType() != null)
             writeText(element, "AircraftType", flightReport.getAircraftType());
         if (flightReport.getAircraftRegistration() != null)
