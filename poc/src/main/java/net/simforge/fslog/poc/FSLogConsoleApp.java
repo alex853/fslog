@@ -33,13 +33,17 @@ public class FSLogConsoleApp {
 
         while (true) {
 
-            System.out.print("Add [F]light, Add [D]iscontinuity, [S]ave, or [Q]uit: ");
+            System.out.print("Add [F]light, Add [D]iscontinuity, Add [T]ransfer, [J]oin, [S]ave, or [Q]uit: ");
             String selectedAction = scanner.nextLine();
 
             if (selectedAction.equalsIgnoreCase("f")) {
                 addFlight(logBook);
+            } else if (selectedAction.equalsIgnoreCase("t")) {
+                addTransfer(logBook);
             } else if (selectedAction.equalsIgnoreCase("d")) {
                 addDiscontinuity(logBook);
+            } else if (selectedAction.equalsIgnoreCase("j")) {
+                join(logBook);
             } else if (selectedAction.equalsIgnoreCase("s")) {
                 saveLogBook(logBook);
             } else if (selectedAction.equalsIgnoreCase("q")) {
@@ -163,12 +167,107 @@ public class FSLogConsoleApp {
         printLogBook(logBook);
     }
 
+    private static void addTransfer(LogBook logBook) {
+        System.out.println();
+        System.out.println("Adding transfer.....");
+        System.out.println();
+
+        Movement previousMovement = null;
+        int position;
+
+        List<LogBookEntry> entries = logBook.getEntries();
+        if (!entries.isEmpty()) {
+            System.out.print("Specify ## of entry AFTER which you are going to add transfer (or empty for adding to tail, or 0 to add as first entry): ");
+            String s = scanner.nextLine();
+
+            if (s == null || s.trim().length() == 0) {
+                position = entries.size();
+            } else {
+                position = Integer.parseInt(s);
+            }
+
+            LogBookEntry previousEntry = position >= 1 ? entries.get(position - 1) : null;
+            LogBookEntry nextEntry = position < entries.size() ? entries.get(position) : null;
+
+            if (previousEntry instanceof Movement) {
+                previousMovement = (Movement) previousEntry;
+            }
+
+            if (nextEntry != null) {
+                if (!(nextEntry instanceof Discontinuity)) {
+                    System.out.println("Unable to insert new transfer before flight or transfer, it should be discontinuity only");
+                    return;
+                }
+            }
+        } else {
+            position = 0;
+        }
+
+        Transfer.Builder builder = new Transfer.Builder();
+
+        System.out.print("Specify date of transfer (or empty string for current date): ");
+        String s = scanner.nextLine();
+        LocalDate date;
+        if (s == null || s.trim().length() == 0) {
+            date = LocalDate.now();
+        } else {
+            date = LocalDate.parse(s, DateTimeFormatter.ISO_DATE);
+        }
+        // todo check legality of date
+        builder.setDate(date);
+
+        if (previousMovement != null) {
+            System.out.println("Departure airport is: " + previousMovement.getDestination() + " (destination of last flight)");
+            builder.setDeparture(previousMovement.getDestination());
+        } else {
+            System.out.print("Specify departure airport: ");
+            String departure = scanner.nextLine();
+            // todo check departure correctness
+            departure = departure.toUpperCase().trim();
+            builder.setDeparture(departure);
+        }
+
+        System.out.print("Specify destination airport: ");
+        String destination = scanner.nextLine();
+        // todo check destination correctness
+        destination = destination.toUpperCase().trim();
+        builder.setDestination(destination);
+
+        System.out.print("Time OUT (or empty for current time): ");
+        LocalTime timeOut = readTime();
+        if (timeOut == null) {
+            timeOut = Time.now().toLocalTime();
+        }
+        builder.setTimeOut(timeOut);
+        // todo check not null
+        // todo check overlapping
+
+        while (true) {
+            System.out.print("Specify mode [R]oards, [F]lights: ");
+            String mode = scanner.nextLine();
+
+            if ("r".equalsIgnoreCase(mode)) {
+                builder.setMethod(Transfer.Method.ROADS);
+                break;
+            } else if ("f".equalsIgnoreCase(mode)) {
+                builder.setMethod(Transfer.Method.FLIGHTS);
+                break;
+            } else {
+                System.out.println("Unknown mode specified");
+            }
+        }
+
+        Transfer newTransfer = builder.build();
+        logBook.insert(position, newTransfer);
+        logBook.compute();
+        printLogBook(logBook);
+    }
+
     private static void addDiscontinuity(LogBook logBook) {
         System.out.println();
         System.out.println("Adding discontinuity.....");
         System.out.println();
 
-        Movement previousMovement = null;
         int position;
 
         List<LogBookEntry> entries = logBook.getEntries();
@@ -193,6 +292,38 @@ public class FSLogConsoleApp {
 
         Discontinuity newDiscontinuity = builder.build();
         logBook.insert(position, newDiscontinuity);
+        printLogBook(logBook);
+    }
+
+    private static void join(LogBook logBook) {
+        System.out.println();
+        System.out.println("Joining discontinuity.....");
+        System.out.println();
+
+        int position;
+
+        List<LogBookEntry> entries = logBook.getEntries();
+        if (!entries.isEmpty()) {
+            System.out.print("Specify ## of entry discontinuity you are going to join: ");
+            String s = scanner.nextLine();
+
+            if (s == null || s.trim().length() == 0) {
+                return;
+            }
+
+            position = Integer.parseInt(s) - 1;
+
+            LogBookEntry entry = entries.get(position);
+            if (!(entry instanceof Discontinuity)) {
+                System.out.println("Entry specified is not discontinuity, exiting");
+                return;
+            }
+        } else {
+            System.out.println("There is no entries in logbook, exiting");
+            return;
+        }
+
+        logBook.remove(position);
         printLogBook(logBook);
     }
 

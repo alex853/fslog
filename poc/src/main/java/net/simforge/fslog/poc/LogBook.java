@@ -132,6 +132,23 @@ public class LogBook {
         return result;
     }
 
+    public ValidationResult remove(int position) {
+        compute();
+
+        LogBookEntry previous = position > 0 ? entries.get(position - 1) : null;
+        LogBookEntry next = position < entries.size() - 1 ? entries.get(position + 1) : null;
+
+        if (previous != null && next != null) {
+            ValidationResult result = validate(previous, next);
+            if (result.getOverallResult() == ValidationResult.Result.OK) {
+                entries.remove(position);
+            }
+            return result;
+        } else {
+            return ValidationResult.createOK();
+        }
+    }
+
     private ValidationResult validate(LogBookEntry entry1, LogBookEntry entry2) {
         if (entry1 instanceof Movement && entry2 instanceof Movement) {
             return validate((Movement) entry1, (Movement) entry2);
@@ -161,7 +178,7 @@ public class LogBook {
             result.fail("Date of next record is unknown");
         } else if (movement2.getTimeOut() == null) {
             result.fail("Time OUT of previous record is unknown");
-        } else if (movement1.getDate().atTime(movement1.getTimeIn()).isAfter(movement2.getDate().atTime(movement2.getTimeOut()))) { // todo FIX!!!!!
+        } else if (movement1.getDateTimeIn().isAfter(movement2.getDateTimeOut())) {
             result.fail("Time OUT of next record is before Time IN of previous record");
         }
 

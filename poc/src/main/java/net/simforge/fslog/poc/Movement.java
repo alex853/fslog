@@ -1,6 +1,7 @@
 package net.simforge.fslog.poc;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public interface Movement {
@@ -13,4 +14,12 @@ public interface Movement {
     LocalTime getTimeOut();
 
     LocalTime getTimeIn();
+
+    default LocalDateTime getDateTimeOut() {
+        return getDate().atTime(getTimeOut());
+    }
+
+    default LocalDateTime getDateTimeIn() {
+        return getTimeIn().isAfter(getTimeOut()) ? getDate().atTime(getTimeIn()) : getDate().plusDays(1).atTime(getTimeIn());
+    }
 }
