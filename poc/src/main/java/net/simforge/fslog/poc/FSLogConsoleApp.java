@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +21,7 @@ public class FSLogConsoleApp {
 
     public static final DateTimeFormatter HHmm = DateTimeFormatter.ofPattern("HH:mm");
 
-    private static final String filename = "C:\\Dropbox\\Dev\\FSLog\\xml\\alexey.xml";
+    public static final String filename = "C:\\Dropbox\\Dev\\FSLog\\xml\\alexey.xml";
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -91,13 +92,21 @@ public class FSLogConsoleApp {
 
         FlightReport.Builder builder = new FlightReport.Builder();
 
-        System.out.print("Specify date of flight (or empty string for current date): ");
-        String s = scanner.nextLine();
         LocalDate date;
-        if (s == null || s.trim().length() == 0) {
-            date = LocalDate.now();
-        } else {
-            date = LocalDate.parse(s, DateTimeFormatter.ISO_DATE);
+        while (true) {
+            System.out.print("Specify date of flight (or empty string for current date): ");
+            String s = scanner.nextLine();
+            if (s == null || s.trim().length() == 0) {
+                date = LocalDate.now();
+                break;
+            } else {
+                try {
+                    date = LocalDate.parse(s, DateTimeFormatter.ISO_DATE);
+                    break;
+                } catch (DateTimeException e) {
+                    System.out.println("Unable to parse date");
+                }
+            }
         }
         // todo check legality of date
         builder.setDate(date);
@@ -161,8 +170,11 @@ public class FSLogConsoleApp {
         // todo check not null
         // todo check it is not earlier than ON or OFF or OUT
 
+        System.out.print("Specify comment: ");
+        String comment = scanner.nextLine();
+        builder.setComment(comment);
+
         FlightReport newFlightReport = builder.build();
-//        logBook.add(newFlightReport);
         logBook.insert(position, newFlightReport);
         printLogBook(logBook);
     }
@@ -243,7 +255,7 @@ public class FSLogConsoleApp {
         // todo check overlapping
 
         while (true) {
-            System.out.print("Specify mode [R]oards, [F]lights: ");
+            System.out.print("Specify mode [R]oards, [F]lights, [M]ach 3: ");
             String mode = scanner.nextLine();
 
             if ("r".equalsIgnoreCase(mode)) {
@@ -252,10 +264,17 @@ public class FSLogConsoleApp {
             } else if ("f".equalsIgnoreCase(mode)) {
                 builder.setMethod(Transfer.Method.FLIGHTS);
                 break;
+            } else if ("m".equalsIgnoreCase(mode)) {
+                builder.setMethod(Transfer.Method.MACH_3);
+                break;
             } else {
                 System.out.println("Unknown mode specified");
             }
         }
+
+        System.out.print("Specify comment: ");
+        String comment = scanner.nextLine();
+        builder.setComment(comment);
 
         Transfer newTransfer = builder.build();
         logBook.insert(position, newTransfer);
@@ -399,7 +418,7 @@ public class FSLogConsoleApp {
         return s != null ? s : def;
     }
 
-    private static LogBook loadLogBook() {
+    public static LogBook loadLogBook() {
         FileInputStream fis;
         try {
             fis = new FileInputStream(filename);
@@ -409,7 +428,7 @@ public class FSLogConsoleApp {
         return XmlLogBookIO.readLogBook(fis);
     }
 
-    private static void saveLogBook(LogBook logBook) {
+    public static void saveLogBook(LogBook logBook) {
         Path original = Paths.get(filename);
         Path copy = Paths.get(filename.replace(".xml", "." + System.currentTimeMillis() + ".xml"));
         try {

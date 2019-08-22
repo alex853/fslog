@@ -126,6 +126,7 @@ public class XmlLogBookIO {
                 .setTimeOff(readTimeAndRemove(copy, "TimeOff"))
                 .setTimeOn(readTimeAndRemove(copy, "TimeOn"))
                 .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
+                .setDistance(readIntAndRemove(copy, "Distance"))
                 .setComment(readTextAndRemove(copy, "Comment"))
                 .setRestOfXml(copy);
 
@@ -163,6 +164,8 @@ public class XmlLogBookIO {
             writeText(element, "TimeOn", HHmm.format(flightReport.getTimeOn()));
         if (flightReport.getTimeIn() != null)
             writeText(element, "TimeIn", HHmm.format(flightReport.getTimeIn()));
+        if (flightReport.getDistance() != null)
+            writeText(element, "Distance", flightReport.getDistance().toString());
         if (flightReport.getComment() != null)
             writeText(element, "Comment", flightReport.getComment());
     }
@@ -260,6 +263,15 @@ public class XmlLogBookIO {
         Element textNode = document.createElement(name);
         textNode.appendChild(document.createTextNode(text));
         element.appendChild(textNode);
+    }
+
+    private static Integer readIntAndRemove(Element copy, String name) {
+        String text = readTextAndRemove(copy, name);
+        if (text == null) {
+            return null;
+        } else {
+            return Integer.parseInt(text);
+        }
     }
 
     private static LocalTime readTimeAndRemove(Element copy, String name) {

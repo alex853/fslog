@@ -72,6 +72,10 @@ public class LogBook {
                 speed = 300;
                 minTime = 2;
                 break;
+            case MACH_3:
+                speed = 1500;
+                minTime = 0.25;
+                break;
             default:
                 throw new IllegalStateException("Could not determine speed for " + transfer.getMethod() + " transfer method");
         }
@@ -119,7 +123,7 @@ public class LogBook {
         }
 
         LogBookEntry previous = position > 0 ? entries.get(position - 1) : null;
-        LogBookEntry next = entries.get(position);
+        LogBookEntry next = position < entries.size() ? entries.get(position) : null;
 
         ValidationResult validationAgainstPrevious = validate(previous, entry);
         ValidationResult validationAgainstNext = validate(entry, next);

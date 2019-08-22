@@ -9,7 +9,8 @@ public class Transfer implements LogBookEntry, Movement {
 
     public enum Method {
         ROADS("roads"),
-        FLIGHTS("flights");
+        FLIGHTS("flights"),
+        MACH_3("mach-3");
 
         private String code;
 

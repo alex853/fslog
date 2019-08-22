@@ -17,7 +17,7 @@ public class FlightReport implements LogBookEntry, Movement {
     private LocalTime timeOff;
     private LocalTime timeOn;
     private LocalTime timeIn;
-//    private Integer distance;
+    private Integer distance;
     private String comment;
 //    private String remarks;
     private Node restOfXml;
@@ -72,6 +72,10 @@ public class FlightReport implements LogBookEntry, Movement {
     @Override
     public LocalTime getTimeIn() {
         return timeIn;
+    }
+
+    public Integer getDistance() {
+        return distance;
     }
 
     public String getComment() {
@@ -147,6 +151,11 @@ public class FlightReport implements LogBookEntry, Movement {
             return this;
         }
 
+        public Builder setDistance(Integer distance) {
+            this.flightReport.distance = distance;
+            return this;
+        }
+
         public Builder setComment(String comment) {
             this.flightReport.comment = comment;
             return this;
@@ -174,6 +183,7 @@ public class FlightReport implements LogBookEntry, Movement {
             copy.timeOff = source.timeOff;
             copy.timeOn = source.timeOn;
             copy.timeIn = source.timeIn;
+            copy.distance = source.distance;
             copy.comment = source.comment;
             copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
             return copy;
