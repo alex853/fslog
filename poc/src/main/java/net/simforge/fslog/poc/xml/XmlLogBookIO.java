@@ -129,8 +129,22 @@ public class XmlLogBookIO {
                 .setDistance(readIntAndRemove(copy, "Distance"))
                 .setComment(readTextAndRemove(copy, "Comment"))
                 .setRestOfXml(copy);
+        readFlags(copy, builder.getFlagsBuilder());
 
         return builder.build();
+    }
+
+    private static void readFlags(Element copy, Flags.Builder flagsBuilder) {
+        NodeList list = copy.getElementsByTagName("Flags");
+        if (list.getLength() == 0) {
+            return;
+        }
+
+        Element flagsElement = (Element) list.item(0);
+        flagsBuilder
+                .setNetwork(readEnum(flagsElement, "Network", Flags.Network.class, false))
+                .setFse(readBoolean(flagsElement, "FSE", false))
+                .setAirline(readText(flagsElement, "Airline", false));
     }
 
     private static void writeFlightReport(Document document, FlightReport flightReport) {
@@ -248,13 +262,19 @@ public class XmlLogBookIO {
     }
 
     private static String readTextAndRemove(Element copy, String name) {
+        return readText(copy, name, true);
+    }
+
+    private static String readText(Element copy, String name, boolean remove) {
         NodeList list = copy.getElementsByTagName(name);
         if (list == null || list.getLength() == 0) {
             return null;
         }
         Node node = list.item(0);
         String text = node.getTextContent();
-        copy.removeChild(node);
+        if (remove) {
+            copy.removeChild(node);
+        }
         return text;
     }
 
@@ -263,6 +283,15 @@ public class XmlLogBookIO {
         Element textNode = document.createElement(name);
         textNode.appendChild(document.createTextNode(text));
         element.appendChild(textNode);
+    }
+
+    private static Boolean readBoolean(Element copy, String name, boolean remove) {
+        String text = readText(copy, name, remove);
+        if (text == null) {
+            return null;
+        } else {
+            return Boolean.parseBoolean(text);
+        }
     }
 
     private static Integer readIntAndRemove(Element copy, String name) {
@@ -293,7 +322,11 @@ public class XmlLogBookIO {
     }
 
     private static <T> T readEnumAndRemove(Element copy, String name, Class clazz) {
-        String text = readTextAndRemove(copy, name);
+        return readEnum(copy, name, clazz, true);
+    }
+
+    private static <T> T readEnum(Element copy, String name, Class clazz, boolean remove) {
+        String text = readText(copy, name, remove);
         if (text == null) {
             return null;
         } else {

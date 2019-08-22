@@ -22,6 +22,8 @@ public class FlightReport implements LogBookEntry, Movement {
 //    private String remarks;
     private Node restOfXml;
 
+    private Flags flags = new Flags();
+
     private FlightReport() {
     }
 
@@ -86,14 +88,21 @@ public class FlightReport implements LogBookEntry, Movement {
         return restOfXml;
     }
 
+    public Flags getFlags() {
+        return flags;
+    }
+
     public static class Builder {
         private FlightReport flightReport = new FlightReport();
+        private Flags.Builder flagsBuilder = new Flags.Builder();
 
         public Builder() {
         }
 
         public Builder(FlightReport flightReport) {
             this.flightReport = copy(flightReport);
+            this.flagsBuilder = new Flags.Builder(flightReport.flags);
+
         }
 
         public Builder setDate(LocalDate date) {
@@ -166,7 +175,12 @@ public class FlightReport implements LogBookEntry, Movement {
             return this;
         }
 
+        public Flags.Builder getFlagsBuilder() {
+            return flagsBuilder;
+        }
+
         public FlightReport build() {
+            this.flightReport.flags = flagsBuilder.build();
             return copy(flightReport);
         }
 
@@ -186,6 +200,9 @@ public class FlightReport implements LogBookEntry, Movement {
             copy.distance = source.distance;
             copy.comment = source.comment;
             copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
+
+            copy.flags = source.flags;
+
             return copy;
         }
     }

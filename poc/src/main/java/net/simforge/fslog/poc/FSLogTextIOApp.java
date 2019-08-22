@@ -38,6 +38,7 @@ public class FSLogTextIOApp {
             new TimeColumn(TimeType.TimeOn),
             new TimeColumn(TimeType.TimeIn),
             new DistanceColumn(),
+            new FlagsColumn(),
             new SimpleColumn("Comment", 50, "Comment")
     };
 
@@ -535,6 +536,72 @@ public class FSLogTextIOApp {
         @Override
         String format(LogBookEntry entry, Map<String, Object> ctx) {
             return Str.ar(Integer.toString((Integer) ctx.get("rowNumber")), width);
+        }
+
+        @Override
+        void read(Object builder) {
+            // no op
+        }
+    }
+
+    private static class FlagsColumn extends Column<Movement> {
+
+        public FlagsColumn() {
+            super("Flags", 7);
+        }
+
+        @Override
+        String format(Movement movement, Map<String, Object> ctx) {
+            if (movement instanceof Transfer)
+                return null;
+
+            Flags flags = ((FlightReport) movement).getFlags();
+            List<String> valuesList = new ArrayList<>();
+            if (flags.getNetwork() != null)
+                valuesList.add(flags.getNetwork().code());
+            if (Boolean.TRUE.equals(flags.getFse()))
+                valuesList.add("FSE");
+            if (flags.getAirline() != null)
+                valuesList.add(flags.getAirline());
+
+            String[] values = valuesList.toArray(new String[valuesList.size()]);
+            int[] lengths = new int[values.length];
+
+            int total = 0;
+            for (int i = 0; i < values.length; i++) {
+                lengths[i] = values[i].length();
+                total += lengths[i];
+            }
+
+            int availableLength = width - (values.length-1);
+
+            while (total > availableLength) {
+                int maxIndex = findMaxIndex(lengths);
+                lengths[maxIndex]--;
+                total--;
+            }
+
+            String result = "";
+            for (int i = 0; i < lengths.length; i++) {
+                result += values[i].substring(0, lengths[i]);
+                if (i < lengths.length - 1) {
+                    result += ",";
+                }
+            }
+
+            return result;
+        }
+
+        private int findMaxIndex(int[] lengths) {
+            int max = 0;
+            int maxIndex = -1;
+            for (int i = 0; i < lengths.length; i++) {
+                if (lengths[i] > max) {
+                    max = lengths[i];
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
         }
 
         @Override
