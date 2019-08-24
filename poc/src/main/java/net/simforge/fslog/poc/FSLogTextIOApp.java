@@ -39,6 +39,7 @@ public class FSLogTextIOApp {
             new TimeColumn(TimeType.TimeIn),
             new DistanceColumn(),
             new FlagsColumn(),
+            new FinancesColumn(),
             new SimpleColumn("Comment", 50, "Comment")
     };
 
@@ -76,6 +77,7 @@ public class FSLogTextIOApp {
                             "Add Discontinuity",
                             "Join Discontinuity",
                             "Save",
+                            "Reload",
                             "Quit")
                     .read("Select action");
             terminal.println(action);
@@ -87,6 +89,10 @@ public class FSLogTextIOApp {
             } else if (action.equals("Save")) {
                 FSLogConsoleApp.saveLogBook(logBook);
                 terminal.println("Logbook saved");
+            } else if (action.equals("Reload")) {
+                logBook = FSLogConsoleApp.loadLogBook();
+                terminal.resetToBookmark(CLEAR_SCREEN);
+                printLogBook(logBook);
             } else if (action.equals("Quit")) {
                 break;
             }
@@ -602,6 +608,39 @@ public class FSLogTextIOApp {
                 }
             }
             return maxIndex;
+        }
+
+        @Override
+        void read(Object builder) {
+            // no op
+        }
+    }
+
+    private static class FinancesColumn extends Column<Movement> {
+        public FinancesColumn() {
+            super("Finances", 8);
+        }
+
+        @Override
+        String format(Movement movement, Map<String, Object> ctx) {
+            Finances finances;
+            if (movement instanceof Transfer) {
+                finances = ((Transfer) movement).getFinances();
+            } else {
+                finances = ((FlightReport) movement).getFinances();
+            }
+
+            if (finances.getSponsorType() == null)
+                return null;
+
+            switch (finances.getSponsorType()) {
+                case SELF:
+                    return "self";
+                case AIRLINE:
+                    return finances.getSponsorName() != null ? finances.getSponsorName() : "airline";
+                default:
+                    return "unknown";
+            }
         }
 
         @Override

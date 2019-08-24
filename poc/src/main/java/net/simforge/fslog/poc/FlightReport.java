@@ -22,7 +22,8 @@ public class FlightReport implements LogBookEntry, Movement {
 //    private String remarks;
     private Node restOfXml;
 
-    private Flags flags = new Flags();
+    private Flags flags = new Flags.Builder().build();
+    private Finances finances = new Finances.Builder().build();
 
     private FlightReport() {
     }
@@ -92,9 +93,14 @@ public class FlightReport implements LogBookEntry, Movement {
         return flags;
     }
 
+    public Finances getFinances() {
+        return finances;
+    }
+
     public static class Builder {
         private FlightReport flightReport = new FlightReport();
         private Flags.Builder flagsBuilder = new Flags.Builder();
+        private Finances.Builder financesBuilder = new Finances.Builder();
 
         public Builder() {
         }
@@ -102,7 +108,7 @@ public class FlightReport implements LogBookEntry, Movement {
         public Builder(FlightReport flightReport) {
             this.flightReport = copy(flightReport);
             this.flagsBuilder = new Flags.Builder(flightReport.flags);
-
+            this.financesBuilder = new Finances.Builder(flightReport.finances);
         }
 
         public Builder setDate(LocalDate date) {
@@ -179,8 +185,13 @@ public class FlightReport implements LogBookEntry, Movement {
             return flagsBuilder;
         }
 
+        public Finances.Builder getFinancesBuilder() {
+            return financesBuilder;
+        }
+
         public FlightReport build() {
             this.flightReport.flags = flagsBuilder.build();
+            this.flightReport.finances = financesBuilder.build();
             return copy(flightReport);
         }
 
@@ -202,6 +213,7 @@ public class FlightReport implements LogBookEntry, Movement {
             copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
 
             copy.flags = source.flags;
+            copy.finances = source.finances;
 
             return copy;
         }

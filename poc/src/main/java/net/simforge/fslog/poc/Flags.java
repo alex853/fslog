@@ -5,6 +5,9 @@ public class Flags {
     private Boolean fse;
     private String airline;
 
+    private Flags() {
+    }
+
     public Network getNetwork() {
         return network;
     }
@@ -60,7 +63,6 @@ public class Flags {
         VATSIM("VATSIM"),
         IVAO("IVAO"),
         PilotEdge("PilotEdge");
-
 
         private String code;
 

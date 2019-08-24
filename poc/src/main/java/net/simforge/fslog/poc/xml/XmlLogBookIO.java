@@ -21,6 +21,7 @@ import java.lang.reflect.Method;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static net.simforge.fslog.poc.FSLogConsoleApp.HHmm;
@@ -127,9 +128,12 @@ public class XmlLogBookIO {
                 .setTimeOn(readTimeAndRemove(copy, "TimeOn"))
                 .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
                 .setDistance(readIntAndRemove(copy, "Distance"))
-                .setComment(readTextAndRemove(copy, "Comment"))
-                .setRestOfXml(copy);
+                .setComment(readTextAndRemove(copy, "Comment"));
         readFlags(copy, builder.getFlagsBuilder());
+        readFinances(copy, builder.getFinancesBuilder());
+
+        removeTextNodes(copy);
+        builder.setRestOfXml(copy);
 
         return builder.build();
     }
@@ -145,6 +149,33 @@ public class XmlLogBookIO {
                 .setNetwork(readEnum(flagsElement, "Network", Flags.Network.class, false))
                 .setFse(readBoolean(flagsElement, "FSE", false))
                 .setAirline(readText(flagsElement, "Airline", false));
+
+//        copy.removeChild(flagsElement);
+    }
+
+    private static void readFinances(Element copy, Finances.Builder financesBuilder) {
+        NodeList list = copy.getElementsByTagName("Finances");
+        if (list.getLength() == 0) {
+            return;
+        }
+
+        Element financesElement = (Element) list.item(0);
+
+        Finances.SponsorType sponsorType = readEnum(financesElement, "SponsorType", Finances.SponsorType.class, false);
+        if (sponsorType == null) {
+            sponsorType = readEnum(financesElement, "Sponsor", Finances.SponsorType.class, false);
+        }
+        financesBuilder.setSponsorType(sponsorType);
+
+        String sponsorName = readText(financesElement, "SponsorName", false);
+        if (sponsorName == null) {
+            sponsorName = readText(financesElement, "Airline", false);
+        }
+        financesBuilder.setSponsorName(sponsorName);
+
+        financesBuilder.setFseEarnings(readInt(financesElement, "FSEEarnings", false));
+
+//        copy.removeChild(financesElement);
     }
 
     private static void writeFlightReport(Document document, FlightReport flightReport) {
@@ -197,8 +228,11 @@ public class XmlLogBookIO {
                 .setTimeIn(readTimeAndRemove(copy, "TimeIn"))
                 .setMethod(readEnumAndRemove(copy, "Method", Transfer.Method.class))
                 .setStatus(readEnumAndRemove(copy, "Status", Transfer.Status.class))
-                .setComment(readTextAndRemove(copy, "Comment"))
-                .setRestOfXml(copy);
+                .setComment(readTextAndRemove(copy, "Comment"));
+        readFinances(copy, builder.getFinancesBuilder());
+
+        removeTextNodes(copy);
+        builder.setRestOfXml(copy);
 
         return builder.build();
     }
@@ -238,8 +272,10 @@ public class XmlLogBookIO {
         builder
                 .setDate(readDateAndRemove(copy, "Date"))
                 .setTime(readTimeAndRemove(copy, "Time"))
-                .setComment(readTextAndRemove(copy, "Comment"))
-                .setRestOfXml(copy);
+                .setComment(readTextAndRemove(copy, "Comment"));
+
+        removeTextNodes(copy);
+        builder.setRestOfXml(copy);
 
         return builder.build();
     }
@@ -295,7 +331,11 @@ public class XmlLogBookIO {
     }
 
     private static Integer readIntAndRemove(Element copy, String name) {
-        String text = readTextAndRemove(copy, name);
+        return readInt(copy, name, true);
+    }
+
+    private static Integer readInt(Element copy, String name, boolean remove) {
+        String text = readText(copy, name, remove);
         if (text == null) {
             return null;
         } else {
@@ -343,5 +383,19 @@ public class XmlLogBookIO {
                 throw new IllegalArgumentException(e);
             }
         }
+    }
+
+    private static void removeTextNodes(Element copy) {
+        NodeList childNodes = copy.getChildNodes();
+
+        List<Node> nodesToRemove = new ArrayList<>();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            Node node = childNodes.item(i);
+            if (node.getNodeType() == Node.TEXT_NODE) {
+                nodesToRemove.add(node);
+            }
+        }
+
+        nodesToRemove.forEach(copy::removeChild);
     }
 }

@@ -66,6 +66,8 @@ public class Transfer implements LogBookEntry, Movement {
     private String comment;
     private Node restOfXml;
 
+    private Finances finances = new Finances.Builder().build();
+
     private Transfer() {
     }
 
@@ -110,14 +112,20 @@ public class Transfer implements LogBookEntry, Movement {
         return restOfXml;
     }
 
+    public Finances getFinances() {
+        return finances;
+    }
+
     public static class Builder {
         private Transfer transfer = new Transfer();
+        private Finances.Builder financesBuilder = new Finances.Builder();
 
         public Builder() {
         }
 
         public Builder(Transfer transfer) {
             this.transfer = copy(transfer);
+            this.financesBuilder = new Finances.Builder(transfer.finances);
         }
 
         public Builder setDate(LocalDate date) {
@@ -165,7 +173,12 @@ public class Transfer implements LogBookEntry, Movement {
             return this;
         }
 
+        public Finances.Builder getFinancesBuilder() {
+            return financesBuilder;
+        }
+
         public Transfer build() {
+            this.transfer.finances = financesBuilder.build();
             return copy(transfer);
         }
 
@@ -180,6 +193,9 @@ public class Transfer implements LogBookEntry, Movement {
             copy.status = source.status;
             copy.comment = source.comment;
             copy.restOfXml = source.restOfXml != null ? source.restOfXml.cloneNode(true) : null;
+
+            copy.finances = source.finances;
+
             return copy;
         }
     }
