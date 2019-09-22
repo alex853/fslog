@@ -33,10 +33,28 @@ public class FSLogTextIOApp {
             new SimpleColumn("Reg #", 8, "AircraftRegistration"),
             new SimpleColumn("Dep", 4, "Departure"),
             new SimpleColumn("Dest", 4, "Destination"),
-            new TimeColumn(TimeType.TimeOut),
-            new TimeColumn(TimeType.TimeOff),
-            new TimeColumn(TimeType.TimeOn),
-            new TimeColumn(TimeType.TimeIn),
+            new TimeColumn(TimeType.TimeOut, false),
+            new TimeColumn(TimeType.TimeOff, false),
+            new TimeColumn(TimeType.TimeOn, false),
+            new TimeColumn(TimeType.TimeIn, false),
+            new DistanceColumn(),
+            new FlagsColumn(),
+            new FinancesColumn(),
+            new SimpleColumn("Comment", 50, "Comment")
+    };
+
+    public static final Column[] TRANSFER_COLUMNS = new Column[]{
+            new RowNumberColumn(),
+            new DateOfFlightColumn(),
+            new MovementTypeColumn(),
+            new NoColumn(8),
+            new NoColumn(8),
+            new TransferMethodColumn(),
+            new SimpleColumn("Dep", 4, "Departure"),
+            new SimpleColumn("Dest", 4, "Destination"),
+            new TimeColumn(TimeType.TimeOut, true),
+            new TransferStatusColumn(),
+            new TimeColumn(TimeType.TimeIn, false),
             new DistanceColumn(),
             new FlagsColumn(),
             new FinancesColumn(),
@@ -84,6 +102,8 @@ public class FSLogTextIOApp {
 
             if (action.equals("Add Flight")) {
                 addFlight(logBook);
+            } else if (action.equals("Add Transfer")) {
+                addTransfer(logBook);
             } else if (action.equals("Add Discontinuity")) {
                 addDiscontinuity(logBook);
             } else if (action.equals("Save")) {
@@ -153,6 +173,7 @@ public class FSLogTextIOApp {
                 props.setPromptColor(Color.GREEN);
             } else if (entry instanceof Transfer) {
                 props.setPromptColor(Color.CYAN);
+                columns = TRANSFER_COLUMNS;
             } else if (entry instanceof Discontinuity) {
                 props.setPromptColor(Color.YELLOW);
                 columns = DISCONTINUITY_COLUMNS;
@@ -197,6 +218,114 @@ public class FSLogTextIOApp {
 
         FlightReport newFlight = builder.build();
         logBook.insert(position, newFlight);
+
+        terminal.resetToBookmark(CLEAR_SCREEN);
+        printLogBook(logBook);
+    }
+
+    private static void addTransfer(LogBook logBook) {
+        List<LogBookEntry> entries = logBook.getEntries();
+        Integer position;
+        Movement previousMovement = null;
+        List<LogBookEntry> prevEntries;
+        if (entries.isEmpty()) {
+            position = 0;
+            prevEntries = new ArrayList<>();
+        } else {
+            position = textIO.newIntInputReader()
+                    .withMinVal(0)
+                    .withMaxVal(entries.size())
+                    .withDefaultValue(entries.size())
+                    .read("Specify ### of row after which you are going to add new flight (or 0 to add as first entry)");
+
+            LogBookEntry previousEntry = position >= 1 ? entries.get(position - 1) : null;
+            LogBookEntry nextEntry = position < entries.size() ? entries.get(position) : null;
+
+            if (previousEntry instanceof Movement) {
+                previousMovement = (Movement) previousEntry;
+            }
+
+            prevEntries = entries.subList(Math.max(0, position - 5), position);
+
+            if (nextEntry != null) {
+                if (!(nextEntry instanceof Discontinuity)) {
+                    terminal.println("Unable to insert new flight before flight or transfer, it should be discontinuity only");
+                    return;
+                }
+            }
+        }
+
+        terminal.resetToBookmark(CLEAR_SCREEN);
+        terminal.println("Adding transfer...........");
+        terminal.println();
+
+        for (Column column : MOVEMENT_COLUMNS) {
+            terminal.print(align(column, column.header));
+            terminal.print(" ");
+        }
+        terminal.println();
+
+        TerminalProperties<?> props = terminal.getProperties();
+        Map<String, Object> ctx = new HashMap<>();
+
+        int rowNumber = position - prevEntries.size() + 1;
+        for (LogBookEntry entry : prevEntries) {
+            Column[] columns = MOVEMENT_COLUMNS;
+            if (entry instanceof FlightReport) {
+                props.setPromptColor(Color.GREEN);
+            } else if (entry instanceof Transfer) {
+                props.setPromptColor(Color.CYAN);
+                columns = TRANSFER_COLUMNS;
+            } else if (entry instanceof Discontinuity) {
+                props.setPromptColor(Color.YELLOW);
+                columns = DISCONTINUITY_COLUMNS;
+            }
+
+            ctx.put("rowNumber", rowNumber);
+
+            for (Column column : columns) {
+                terminal.print(align(column, column.format(entry, ctx)));
+                terminal.print(" ");
+            }
+            terminal.println();
+
+            rowNumber++;
+        }
+
+        ctx.put("rowNumber", position + 1);
+
+        Transfer.Builder builder = new Transfer.Builder();
+
+        int DOF_COLUMN_INDEX = 1;
+        int DEP_COLUMN_INDEX = 6;
+        int TIME_OUT_COLUMN_INDEX = 8;
+        for (int currentColumnIndex = DOF_COLUMN_INDEX; currentColumnIndex < TRANSFER_COLUMNS.length; currentColumnIndex++) {
+            Transfer newTransfer = builder.build();
+
+            if (currentColumnIndex > TIME_OUT_COLUMN_INDEX) {
+                newTransfer = LogBook.compute(newTransfer);
+            }
+
+            for (int i = 0; i < currentColumnIndex; i++) {
+                Column column = TRANSFER_COLUMNS[i];
+                terminal.print(align(column, column.format(newTransfer, ctx)));
+                if (i < currentColumnIndex - 1) {
+                    terminal.print(" ");
+                }
+            }
+
+            if (currentColumnIndex == DEP_COLUMN_INDEX && previousMovement != null) {
+                builder.setDeparture(previousMovement.getDestination());
+            } else {
+                Column currentColumn = TRANSFER_COLUMNS[currentColumnIndex];
+                currentColumn.read(builder);
+            }
+
+            terminal.resetLine();
+        }
+
+        Transfer newTransfer = builder.build();
+        logBook.insert(position, newTransfer);
 
         terminal.resetToBookmark(CLEAR_SCREEN);
         printLogBook(logBook);
@@ -247,6 +376,7 @@ public class FSLogTextIOApp {
                 terminalProperties.setPromptColor(Color.GREEN);
             } else if (entry instanceof Transfer) {
                 terminalProperties.setPromptColor(Color.CYAN);
+                columns = TRANSFER_COLUMNS;
             } else if (entry instanceof Discontinuity) {
                 terminalProperties.setPromptColor(Color.YELLOW);
                 columns = DISCONTINUITY_COLUMNS;
@@ -273,6 +403,7 @@ public class FSLogTextIOApp {
     }
 
     private static void printLogBook(LogBook logBook) {
+        logBook.compute();
         List<LogBookEntry> entries = logBook.getEntries();
 
         TerminalProperties<?> props = terminal.getProperties();
@@ -291,6 +422,7 @@ public class FSLogTextIOApp {
                 props.setPromptColor(Color.GREEN);
             } else if (entry instanceof Transfer) {
                 props.setPromptColor(Color.CYAN);
+                columns = TRANSFER_COLUMNS;
             } else if (entry instanceof Discontinuity) {
                 props.setPromptColor(Color.YELLOW);
                 columns = DISCONTINUITY_COLUMNS;
@@ -375,6 +507,21 @@ public class FSLogTextIOApp {
 
         }
     }
+    private static class NoColumn extends Column<LogBookEntry> {
+        public NoColumn(int width) {
+            super(null, width);
+        }
+
+        @Override
+        String format(LogBookEntry entry, Map<String, Object> ctx) {
+            return null;
+        }
+
+        @Override
+        void read(Object builder) {
+            // no op
+        }
+    }
 
     private static class MovementTypeColumn extends Column<Movement> {
         public MovementTypeColumn() {
@@ -408,7 +555,7 @@ public class FSLogTextIOApp {
             String input = textIO.newStringInputReader().withMinLength(0).read();
             LocalDate date;
             if (input == null || input.trim().length() == 0) {
-                date = LocalDate.now();
+                date = Time.now().toLocalDate();
             } else {
                 date = LocalDate.parse(input, DateTimeFormatter.ISO_DATE);
             }
@@ -451,6 +598,45 @@ public class FSLogTextIOApp {
         }
     }
 
+    private static class TransferMethodColumn extends Column<Transfer> {
+        public TransferMethodColumn() {
+            super("Method", 13, true);
+        }
+
+        @Override
+        String format(Transfer transfer, Map<String, Object> ctx) {
+            return transfer.getMethod().code().toUpperCase();
+        }
+
+        @Override
+        void read(Object builder) {
+            String input = textIO.newStringInputReader().withInlinePossibleValues("ROADS", "FLIGHTS", "MACH-3").withIgnoreCase().read();
+            Transfer.Builder transferBuilder = (Transfer.Builder) builder;
+            if (input.equalsIgnoreCase("ROADS")) {
+                transferBuilder.setMethod(Transfer.Method.ROADS);
+            } else if (input.equalsIgnoreCase("FLIGHTS")) {
+                transferBuilder.setMethod(Transfer.Method.FLIGHTS);
+            } else {
+                transferBuilder.setMethod(Transfer.Method.MACH_3);
+            }
+        }
+    }
+
+    private static class TransferStatusColumn extends Column<Transfer> {
+        public TransferStatusColumn() {
+            super("Status", 11, true);
+        }
+
+        @Override
+        String format(Transfer transfer, Map<String, Object> ctx) {
+            return transfer.getStatus() != null ? transfer.getStatus().code().toUpperCase() : null;
+        }
+
+        @Override
+        void read(Object builder) {
+        }
+    }
+
     private enum TimeType {
         TimeOut,
         TimeOff,
@@ -460,13 +646,15 @@ public class FSLogTextIOApp {
 
     private static class TimeColumn extends Column<Movement> {
         private final TimeType timeType;
+        private final boolean currentTimeMode;
 
-        public TimeColumn(TimeType timeType) {
+        public TimeColumn(TimeType timeType, boolean currentTimeMode) {
             super(timeType.equals(TimeType.TimeOut) ? "T.Out" :
                     timeType.equals(TimeType.TimeOff) ? "T.Off" :
                             timeType.equals(TimeType.TimeOn) ? "T.On" :
                                     "T.In", 5);
             this.timeType = timeType;
+            this.currentTimeMode = currentTimeMode;
         }
 
         @Override
@@ -487,7 +675,14 @@ public class FSLogTextIOApp {
                     }
                     break;
                 case TimeIn:
-                    time = movement.getTimeIn();
+                    if (movement instanceof Transfer) {
+                        Transfer transfer = (Transfer) movement;
+                        time = transfer.getStatus() == Transfer.Status.IN_PROGRESS
+                                ? transfer.getEstimatedTimeIn()
+                                : transfer.getTimeIn();
+                    } else {
+                        time = movement.getTimeIn();
+                    }
                     break;
             }
             return time != null ? time.format(HHmm) : null;
@@ -495,11 +690,15 @@ public class FSLogTextIOApp {
 
         @Override
         void read(Object builder) {
+            if (timeType == TimeType.TimeIn && builder instanceof Transfer.Builder) {
+                return;
+            }
+
             LocalTime time;
 
             String input = textIO.newStringInputReader().withMinLength(0).read();
             if (input == null || input.trim().length() == 0) {
-                time = null;
+                time = currentTimeMode ? Time.now().toLocalTime() : null;
             } else {
                 time = LocalTime.parse(input, HHmm);
             }

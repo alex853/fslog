@@ -53,7 +53,7 @@ public class LogBook {
         }
     }
 
-    private Transfer compute(Transfer transfer) {
+    public static Transfer compute(Transfer transfer) {
         if (transfer.getStatus() == Transfer.Status.DONE && transfer.getTimeIn() != null) {
             return null;
         }
@@ -87,9 +87,11 @@ public class LogBook {
         Transfer.Builder builder = new Transfer.Builder(transfer);
         if (timeIn.isAfter(Time.now())) {
             builder.setStatus(Transfer.Status.IN_PROGRESS);
+            builder.setEstimatedTimeIn(timeIn.toLocalTime());
         } else {
             builder.setStatus(Transfer.Status.DONE);
             builder.setTimeIn(timeIn.toLocalTime());
+            builder.setEstimatedTimeIn(null);
         }
 
         return builder.build();

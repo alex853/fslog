@@ -3,6 +3,7 @@ package net.simforge.fslog.poc;
 import org.w3c.dom.Node;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class Transfer implements LogBookEntry, Movement {
@@ -61,6 +62,7 @@ public class Transfer implements LogBookEntry, Movement {
     private String destination;
     private LocalTime timeOut;
     private LocalTime timeIn;
+    private LocalTime estimatedTimeIn;
     private Method method;
     private Status status;
     private String comment;
@@ -94,6 +96,14 @@ public class Transfer implements LogBookEntry, Movement {
     @Override
     public LocalTime getTimeIn() {
         return timeIn;
+    }
+
+    public LocalTime getEstimatedTimeIn() {
+        return estimatedTimeIn;
+    }
+
+    public LocalDateTime getEstimatedDateTimeIn() {
+        return getEstimatedTimeIn().isAfter(getTimeOut()) ? getDate().atTime(getEstimatedTimeIn()) : getDate().plusDays(1).atTime(getEstimatedTimeIn());
     }
 
     public Method getMethod() {
@@ -153,6 +163,11 @@ public class Transfer implements LogBookEntry, Movement {
             return this;
         }
 
+        public Builder setEstimatedTimeIn(LocalTime estimatedTimeIn) {
+            this.transfer.estimatedTimeIn = estimatedTimeIn;
+            return this;
+        }
+
         public Builder setMethod(Method method) {
             this.transfer.method = method;
             return this;
@@ -189,6 +204,7 @@ public class Transfer implements LogBookEntry, Movement {
             copy.destination = source.destination;
             copy.timeOut = source.timeOut;
             copy.timeIn = source.timeIn;
+            copy.estimatedTimeIn = source.estimatedTimeIn;
             copy.method = source.method;
             copy.status = source.status;
             copy.comment = source.comment;
