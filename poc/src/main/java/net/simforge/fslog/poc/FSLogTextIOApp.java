@@ -75,12 +75,16 @@ public class FSLogTextIOApp {
                 }
             }
     };
+
     public static void main(String[] args) {
+        String logbookName = args[0];
+        String logbookFilename = "./data/" + logbookName + ".xml";
+
         textIO = TextIoFactory.getTextIO();
         terminal = textIO.getTextTerminal();
         terminalProperties = terminal.getProperties();
 
-        LogBook logBook = FSLogConsoleApp.loadLogBook();
+        LogBook logBook = FSLogConsoleApp.loadLogBook(logbookFilename);
 
         terminal.setBookmark(CLEAR_SCREEN);
         printLogBook(logBook);
@@ -107,10 +111,10 @@ public class FSLogTextIOApp {
             } else if (action.equals("Add Discontinuity")) {
                 addDiscontinuity(logBook);
             } else if (action.equals("Save")) {
-                FSLogConsoleApp.saveLogBook(logBook);
+                FSLogConsoleApp.saveLogBook(logBook, logbookFilename);
                 terminal.println("Logbook saved");
             } else if (action.equals("Reload")) {
-                logBook = FSLogConsoleApp.loadLogBook();
+                logBook = FSLogConsoleApp.loadLogBook(logbookFilename);
                 terminal.resetToBookmark(CLEAR_SCREEN);
                 printLogBook(logBook);
             } else if (action.equals("Quit")) {

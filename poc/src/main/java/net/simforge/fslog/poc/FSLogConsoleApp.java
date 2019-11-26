@@ -26,7 +26,7 @@ public class FSLogConsoleApp {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        LogBook logBook = loadLogBook();
+        LogBook logBook = loadLogBook(filename);
         logBook.compute();
         printLogBook(logBook);
 
@@ -46,7 +46,7 @@ public class FSLogConsoleApp {
             } else if (selectedAction.equalsIgnoreCase("j")) {
                 join(logBook);
             } else if (selectedAction.equalsIgnoreCase("s")) {
-                saveLogBook(logBook);
+                saveLogBook(logBook, filename);
             } else if (selectedAction.equalsIgnoreCase("q")) {
                 return;
             }
@@ -418,7 +418,7 @@ public class FSLogConsoleApp {
         return s != null ? s : def;
     }
 
-    public static LogBook loadLogBook() {
+    public static LogBook loadLogBook(String filename) {
         FileInputStream fis;
         try {
             fis = new FileInputStream(filename);
@@ -428,7 +428,7 @@ public class FSLogConsoleApp {
         return XmlLogBookIO.readLogBook(fis);
     }
 
-    public static void saveLogBook(LogBook logBook) {
+    public static void saveLogBook(LogBook logBook, String filename) {
         Path original = Paths.get(filename);
         Path copy = Paths.get(filename.replace(".xml", "." + System.currentTimeMillis() + ".xml"));
         try {
