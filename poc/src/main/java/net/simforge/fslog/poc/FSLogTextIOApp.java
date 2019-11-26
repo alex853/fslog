@@ -217,7 +217,7 @@ public class FSLogTextIOApp {
         }
 
         FlightReport newFlight = builder.build();
-        logBook.insert(position, newFlight);
+        logBook.insert(position, newFlight); // todo check result!!!11
 
         terminal.resetToBookmark(CLEAR_SCREEN);
         printLogBook(logBook);

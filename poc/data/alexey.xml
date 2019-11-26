@@ -1,0 +1,2013 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<FSLog>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2016-12-06</Date>
+<Callsign>CFE59T</Callsign>
+<FlightNumber>BA4457</FlightNumber>
+<AircraftType>E175</AircraftType>
+<AircraftRegistration>PP-XJG</AircraftRegistration>
+<Departure>EGLC</Departure>
+<Destination>EHRD</Destination>
+<TimeOut>20:00</TimeOut>
+<TimeIn>21:00</TimeIn>
+<Distance>260</Distance>
+<Comment>BAV - First flight after rejoining with BAV again</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-01-05</Date>
+<Callsign>CFE57H</Callsign>
+<FlightNumber>BA4458</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EHRD</Departure>
+<Destination>EGLC</Destination>
+<TimeOut>19:56</TimeOut>
+<TimeIn>21:00</TimeIn>
+<Distance>208</Distance>
+<Comment>BAV - Return leg of Rotterdam rotation</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-01-16</Date>
+<Callsign>CFE43Y</Callsign>
+<FlightNumber>BA4459</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EGLC</Departure>
+<Destination>EHRD</Destination>
+<TimeOut>18:45</TimeOut>
+<TimeIn>20:10</TimeIn>
+<Distance>267</Distance>
+<Comment>BAV - Rotterdam rotation again</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-01-23</Date>
+<Callsign>CFE57H</Callsign>
+<FlightNumber>BA4458</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EHRD</Departure>
+<Destination>EGLC</Destination>
+<TimeOut>18:58</TimeOut>
+<TimeIn>19:50</TimeIn>
+<Distance>174</Distance>
+<Comment>BAV - Back to London City</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-02-14</Date>
+<Callsign>CFE8743</Callsign>
+<FlightNumber>BA8743</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EGLC</Departure>
+<Destination>LFJR</Destination>
+<TimeOut>03:15</TimeOut>
+<TimeIn>04:20</TimeIn>
+<Distance>297</Distance>
+<Comment>BAV - Some new flight to new destination</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-04-24</Date>
+<Callsign>CFE59T</Callsign>
+<FlightNumber>BA4457</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EGLC</Departure>
+<Destination>EHRD</Destination>
+<TimeOut>18:58</TimeOut>
+<TimeIn>20:00</TimeIn>
+<Distance>253</Distance>
+<Comment>BAV - Rotterdam rotation in one day</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-04-24</Date>
+<Callsign>CFE57H</Callsign>
+<FlightNumber>BA4458</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EHRD</Departure>
+<Destination>EGLC</Destination>
+<TimeOut>20:12</TimeOut>
+<TimeIn>21:00</TimeIn>
+<Distance>177</Distance>
+<Comment>BAV - Rotterdam rotation in one day</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2017-05-15</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>19:34</TimeOut>
+<TimeIn>20:20</TimeIn>
+<Distance>48</Distance>
+<Comment>IFT - Lesson with James</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2017-05-22</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>19:24</TimeOut>
+<TimeIn>20:30</TimeIn>
+<Distance>80</Distance>
+<Comment>IFT - Lesson with James</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2017-06-11</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:28</TimeOut>
+<TimeIn>11:40</TimeIn>
+<Distance>81</Distance>
+<Comment>IFT - Lesson with James</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2017-08-18</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>18:45</TimeOut>
+<TimeIn>19:40</TimeIn>
+<Distance>62</Distance>
+<Comment>IFT - Lesson with James</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2017-09-17</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>05:35</TimeOut>
+<TimeIn>06:00</TimeIn>
+<Distance>30</Distance>
+<Comment>IFT - Lesson with James</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-10-02</Date>
+<Callsign>CFE7307</Callsign>
+<FlightNumber>BA7307</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>EGLC</Departure>
+<Destination>EGLC</Destination>
+<TimeOut>18:45</TimeOut>
+<TimeIn>20:40</TimeIn>
+<Distance>389</Distance>
+<Comment>BAV - Technical issue forced diversion to EGLC</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-10-06</Date>
+<Callsign>BAW16GM</Callsign>
+<FlightNumber>BA0570</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EGLL</Departure>
+<Destination>LIML</Destination>
+<TimeOut>03:18</TimeOut>
+<TimeIn>05:00</TimeIn>
+<Distance>665</Distance>
+<Comment>BAV - Flight to Milan</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-11-04</Date>
+<Callsign>BAW1DL</Callsign>
+<FlightNumber>BA0941</FlightNumber>
+<AircraftType>A319</AircraftType>
+<AircraftRegistration/>
+<Departure>EDDL</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>18:03</TimeOut>
+<TimeIn>19:20</TimeIn>
+<Distance>317</Distance>
+<Comment/>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-11-04</Date>
+<Callsign>BAW4LT</Callsign>
+<FlightNumber>BA0944</FlightNumber>
+<AircraftType>A319</AircraftType>
+<AircraftRegistration/>
+<Departure>EGLL</Departure>
+<Destination>EDDL</Destination>
+<TimeOut>19:36</TimeOut>
+<TimeIn>20:50</TimeIn>
+<Distance>346</Distance>
+<Comment/>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-11-30</Date>
+<Callsign>BAW1DL</Callsign>
+<FlightNumber>BA0941</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EDDL</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>18:35</TimeOut>
+<TimeIn>19:50</TimeIn>
+<Distance>325</Distance>
+<Comment/>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-12-04</Date>
+<Callsign>BAW858</Callsign>
+<FlightNumber>BA0858</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EGLL</Departure>
+<Destination>LKPR</Destination>
+<TimeOut>18:28</TimeOut>
+<TimeIn>20:30</TimeIn>
+<Distance>625</Distance>
+<Comment/>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-12-17</Date>
+<Callsign>BAW67CY</Callsign>
+<FlightNumber>BA2676</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EGKK</Departure>
+<Destination>LCPH</Destination>
+<TimeOut>11:15</TimeOut>
+<TimeIn>15:30</TimeIn>
+<Distance>1822</Distance>
+<Comment>BAV - Paphos rotation</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2017-12-24</Date>
+<Callsign>BAW2677</Callsign>
+<FlightNumber>BA2677</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>LCPH</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>14:07</TimeOut>
+<TimeIn>19:10</TimeIn>
+<Distance>1812</Distance>
+<Comment>BAV - Paphos rotation</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Date>2018-01-02</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>13:46</TimeOut>
+<TimeIn>14:10</TimeIn>
+<Distance>24</Distance>
+<Comment>IFT</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-01-03</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>14:16</TimeOut>
+<TimeIn>14:50</TimeIn>
+<Distance>32</Distance>
+<Comment>IFT</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-01-03</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>19:34</TimeOut>
+<TimeIn>20:00</TimeIn>
+<Distance>25</Distance>
+<Comment>IFT</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-01-27</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>13:43</TimeOut>
+<TimeIn>14:10</TimeIn>
+<Distance>27</Distance>
+<Comment>IFT</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Date>2018-03-04</Date>
+<Callsign>BAW8AC</Callsign>
+<FlightNumber>BA2540</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EGKK</Departure>
+<Destination>LIRF</Destination>
+<TimeOut>07:12</TimeOut>
+<TimeIn>09:50</TimeIn>
+<Distance>839</Distance>
+<Comment>BAV - Rome rotation</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-03-04</Date>
+<Callsign>BAW21RG</Callsign>
+<FlightNumber>BA2541</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>LIRF</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>10:14</TimeOut>
+<TimeIn>12:50</TimeIn>
+<Distance>869</Distance>
+<Comment>BAV - Rome rotation</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-04-29</Date>
+<Callsign>BAW83HM</Callsign>
+<FlightNumber>BA2764</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EGKK</Departure>
+<Destination>EHAM</Destination>
+<TimeOut>18:29</TimeOut>
+<TimeIn>19:30</TimeIn>
+<Distance>233</Distance>
+<Comment>BAV - Amsterdam rotation</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-04-29</Date>
+<Callsign>BAW2765</Callsign>
+<FlightNumber>BA2765</FlightNumber>
+<AircraftType>A320</AircraftType>
+<AircraftRegistration/>
+<Departure>EHAM</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>19:46</TimeOut>
+<TimeIn>21:00</TimeIn>
+<Distance>256</Distance>
+<Comment>BAV - Amsterdam rotation</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Date>2018-06-05</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:48</TimeOut>
+<TimeIn>11:40</TimeIn>
+<Distance>69</Distance>
+<Comment>IFT Lesson</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-11-05</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>11:48</TimeOut>
+<TimeIn>12:45</TimeIn>
+<Distance>73</Distance>
+<Comment>IFT Lesson</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Date>2018-11-23</Date>
+<Callsign>BAW70Y</Callsign>
+<FlightNumber>BA2770</FlightNumber>
+<AircraftType>A319</AircraftType>
+<AircraftRegistration/>
+<Departure>EGKK</Departure>
+<Destination>EGJJ</Destination>
+<TimeOut>07:40</TimeOut>
+<TimeOff>07:53</TimeOff>
+<TimeOn>08:39</TimeOn>
+<TimeIn>08:46</TimeIn>
+<Distance>221</Distance>
+<Comment>BAV - Flying day - Leg 1/4</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-11-23</Date>
+<Callsign>BAW160J</Callsign>
+<FlightNumber>BA2771</FlightNumber>
+<AircraftType>A319</AircraftType>
+<AircraftRegistration/>
+<Departure>EGJJ</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>09:14</TimeOut>
+<TimeOff>09:23</TimeOff>
+<TimeOn>09:55</TimeOn>
+<TimeIn>10:07</TimeIn>
+<Distance>187</Distance>
+<Comment>BAV - Flying day - Leg 2/4</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-11-23</Date>
+<Callsign>BAW78AM</Callsign>
+<FlightNumber>BA2760</FlightNumber>
+<AircraftType>A310</AircraftType>
+<AircraftRegistration/>
+<Departure>EGKK</Departure>
+<Destination>EHAM</Destination>
+<TimeOut>12:36</TimeOut>
+<TimeOff>12:49</TimeOff>
+<TimeOn>13:27</TimeOn>
+<TimeIn>13:37</TimeIn>
+<Distance>230</Distance>
+<Comment>BAV - Flying day - Leg 3/4</Comment>
+</FlightReport>
+<FlightReport>
+<Date>2018-11-23</Date>
+<Callsign>BAW2761</Callsign>
+<FlightNumber>BA2761</FlightNumber>
+<AircraftType>A319</AircraftType>
+<AircraftRegistration/>
+<Departure>EHAM</Departure>
+<Destination>EHAM</Destination>
+<TimeOut>13:55</TimeOut>
+<TimeOff>14:12</TimeOff>
+<TimeOn>14:53</TimeOn>
+<TimeIn>15:00</TimeIn>
+<Distance>201</Distance>
+<Comment>BAV - Flying day - Leg 4/4 - DIVERSION</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>gap to check</Comment>
+</Discontinuity>
+<FlightReport>
+<Date>2018-12-04</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:42</TimeOut>
+<TimeOff>10:56</TimeOff>
+<TimeOn>11:45</TimeOn>
+<TimeIn>11:50</TimeIn>
+<Distance>78</Distance>
+<Comment>IFT Lesson</Comment>
+</FlightReport>
+<Discontinuity>
+<Comment>2019 - all flights are up-to-date now</Comment>
+</Discontinuity>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-10</Date>
+<Callsign>WYC22A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:37</TimeOut>
+<TimeOff>10:48</TimeOff>
+<TimeOn>11:54</TimeOn>
+<TimeIn>11:57</TimeIn>
+<Distance>88</Distance>
+<Comment>BAV - IFT lesson with Simon, VATSIM as observer</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-15</Date>
+<Callsign>WYC21</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:02</TimeOut>
+<TimeOff>10:50</TimeOff>
+<TimeOn>11:37</TimeOn>
+<TimeIn>11:45</TimeIn>
+<Distance>71</Distance>
+<Comment>BAV - IFT lesson with John Pettit, VATSIM</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Date>2019-01-19</Date>
+<Departure>EGTB</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>06:00</TimeOut>
+<TimeIn>19:46</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>BAV - TNCM scenery, FC aircraft tuning</Comment>
+</Transfer>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2019-01-20</Date>
+<AircraftType>E195</AircraftType>
+<AircraftRegistration/>
+<Departure>TNCM</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>18:00</TimeOut>
+<TimeIn>18:10</TimeIn>
+<Comment>BAV - TNCM scenery, FC aircraft tuning</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2019-01-20</Date>
+<AircraftType>E190</AircraftType>
+<AircraftRegistration/>
+<Departure>TNCM</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>18:20</TimeOut>
+<TimeIn>18:30</TimeIn>
+<Comment>BAV - TNCM scenery, FC aircraft tuning</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2019-01-20</Date>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>TNCM</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>18:40</TimeOut>
+<TimeIn>18:50</TimeIn>
+<Comment>BAV - TNCM scenery, FC aircraft tuning</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+        </Flags>
+<Date>2019-01-20</Date>
+<AircraftType>F18</AircraftType>
+<AircraftRegistration/>
+<Departure>TNCM</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>19:00</TimeOut>
+<TimeIn>19:10</TimeIn>
+<Comment>BAV - TNCM scenery, FC aircraft tuning</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Date>2019-01-20</Date>
+<Departure>TNCM</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>19:30</TimeOut>
+<TimeIn>09:16</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>BAV - Back to the UK</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-24</Date>
+<Callsign>WYC22A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:43</TimeOut>
+<TimeOff>10:53</TimeOff>
+<TimeOn>11:44</TimeOn>
+<TimeIn>11:50</TimeIn>
+<Distance>82</Distance>
+<Comment>BAV - IFT lesson with Simon</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-24</Date>
+<Departure>EGTB</Departure>
+<Destination>MYGF</Destination>
+<TimeOut>13:00</TimeOut>
+<TimeIn>15:44</TimeIn>
+<Method>mach-3</Method>
+<Status>done</Status>
+<Comment>BAV - Fast forward to MYGF</Comment>
+</Transfer>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Date>2019-01-24</Date>
+<Callsign>BAW955</Callsign>
+<FlightNumber/>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>MYGF</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>18:06</TimeOut>
+<TimeOff>18:21</TimeOff>
+<TimeOn>20:47</TimeOn>
+<TimeIn>20:59</TimeIn>
+<Distance>1062</Distance>
+<Comment>BAV - FC flight to TNCM</Comment>
+</FlightReport>
+<Transfer>
+<Date>2019-01-24</Date>
+<Departure>TNCM</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>22:00</TimeOut>
+<TimeIn>20:02</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>BAV - Back to the UK</Comment>
+</Transfer>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-26</Date>
+<Departure>EGTB</Departure>
+<Destination>EGGD</Destination>
+<TimeOut>14:00</TimeOut>
+<TimeIn>16:40</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Bristol</Comment>
+</Transfer>
+<FlightReport>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+<TODO>Sponsor is VATSIM event, it is not self, it is not airline</TODO>
+<Date>2019-01-26</Date>
+<Callsign>BAW955</Callsign>
+<FlightNumber/>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYE</AircraftRegistration>
+<Departure>EGGD</Departure>
+<Destination>EGPF</Destination>
+<TimeOut>17:58</TimeOut>
+<TimeIn>20:19</TimeIn>
+<Comment>VATSIM Newbie Event. So high mileage and flight time are due to several approaches caused by other
+            traffic and issues with Glasgow scenery.
+        </Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-27</Date>
+<Departure>EGPF</Departure>
+<Destination>EGSN</Destination>
+<TimeOut>05:00</TimeOut>
+<TimeIn>14:12</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Bourn where C404 is waiting</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-64</FSEEarnings>
+        </Finances>
+<Date>2019-01-28</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EGSN</Departure>
+<Destination>EGGW</Destination>
+<TimeOut>13:01</TimeOut>
+<TimeIn>13:16</TimeIn>
+<Distance>28</Distance>
+<Comment>Short VFR flight to Luton</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-28</Date>
+<Departure>EGGW</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>19:40</TimeOut>
+<TimeIn>20:43</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Road to TNCM</Comment>
+</Transfer>
+<Transfer>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Date>2019-01-28</Date>
+<Departure>EGLL</Departure>
+<Destination>TNCM</Destination>
+<TimeOut>21:00</TimeOut>
+<TimeIn>10:48</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>BAV - Reposition before FC flight</Comment>
+</Transfer>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Date>2019-01-29</Date>
+<Callsign>BAW955</Callsign>
+<FlightNumber>FC0129A</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>TNCM</Departure>
+<Destination>TFFF</Destination>
+<TimeOut>18:24</TimeOut>
+<TimeOff>18:35</TimeOff>
+<TimeOn>19:20</TimeOn>
+<TimeIn>19:31</TimeIn>
+<Distance>255</Distance>
+<Comment>BAV - FC flight</Comment>
+</FlightReport>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Date>2019-01-29</Date>
+<Callsign>BAW955</Callsign>
+<FlightNumber>FC0129B</FlightNumber>
+<AircraftType>E170</AircraftType>
+<AircraftRegistration>G-LCYD</AircraftRegistration>
+<Departure>TFFF</Departure>
+<Destination>TTPP</Destination>
+<TimeOut>19:46</TimeOut>
+<TimeOff>19:58</TimeOff>
+<TimeOn>20:43</TimeOn>
+<TimeIn>20:48</TimeIn>
+<Distance>267</Distance>
+<Comment>BAV - FC flight</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Date>2019-01-29</Date>
+<Departure>TTPP</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>22:00</TimeOut>
+<TimeIn>12:45</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>BAV - Reposition after FC flight</Comment>
+</Transfer>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-01-30</Date>
+<Departure>EGLL</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>17:10</TimeOut>
+<TimeIn>17:55</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Wycombe</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-03</Date>
+<Callsign>GBAFC</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>12:05</TimeOut>
+<TimeOff>12:16</TimeOff>
+<TimeOn>13:05</TimeOn>
+<TimeIn>13:11</TimeIn>
+<Distance>73</Distance>
+<Comment>BAV - IFT Practice Flight</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-04</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>12:24</TimeOut>
+<TimeOff>12:35</TimeOff>
+<TimeOn>13:20</TimeOn>
+<TimeIn>13:26</TimeIn>
+<Distance>65</Distance>
+<Comment>BAV - IFT lesson with Simon, VATSIM as observer, VFR circuits practice</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-05</Date>
+<Departure>EGTB</Departure>
+<Destination>L84</Destination>
+<TimeOut>11:00</TimeOut>
+<TimeIn>04:33</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>Trip to California for BE58 vs C310 comparison and PilotEdge flying</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-449</FSEEarnings>
+        </Finances>
+<Date>2019-02-13</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N247IT</AircraftRegistration>
+<Departure>L84</Departure>
+<Destination>KMIT</Destination>
+<TimeOut>20:31</TimeOut>
+<TimeIn>20:50</TimeIn>
+<Comment>C310 first flight, Strange fuel calculations, probably due to old client</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>402</FSEEarnings>
+        </Finances>
+<Date>2019-02-13</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N247IT</AircraftRegistration>
+<Departure>KMIT</Departure>
+<Destination>7CA2</Destination>
+<TimeOut>20:55</TimeOut>
+<TimeIn>21:10</TimeIn>
+<Comment>Second flight on C310, PilotEdge preparations</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-14</Date>
+<Departure>7CA2</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>15:00</TimeOut>
+<TimeIn>08:33</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>IFT Lesson is scheduled, I have to return to the UK</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-15</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC82A</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTK</Destination>
+<TimeOut>13:27</TimeOut>
+<TimeOff>13:36</TimeOff>
+<TimeOn>14:04</TimeOn>
+<TimeIn>14:08</TimeIn>
+<Distance>44</Distance>
+<Comment>BAV - IFT lesson with Simon</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-15</Date>
+<Departure>EGTK</Departure>
+<Destination>7CA2</Destination>
+<TimeOut>20:00</TimeOut>
+<TimeIn>13:28</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>Back to California for PilotEdge flying</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-93</FSEEarnings>
+        </Finances>
+<Date>2019-02-17</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N247IT</AircraftRegistration>
+<Departure>7CA2</Departure>
+<Destination>KBFL</Destination>
+<TimeOut>01:34</TimeOut>
+<TimeIn>01:57</TimeIn>
+<Comment/>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>3344</FSEEarnings>
+        </Finances>
+<Date>2019-02-17</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N247IT</AircraftRegistration>
+<Departure>KBFL</Departure>
+<Destination>KSMX</Destination>
+<TimeOut>02:01</TimeOut>
+<TimeIn>02:45</TimeIn>
+<Comment/>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>3410</FSEEarnings>
+        </Finances>
+<Date>2019-02-19</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N247IT</AircraftRegistration>
+<Departure>KSMX</Departure>
+<Destination>KBFL</Destination>
+<TimeOut>18:43</TimeOut>
+<TimeIn>19:32</TimeIn>
+<Comment/>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-02-21</Date>
+<Departure>KBFL</Departure>
+<Destination>L45</Destination>
+<TimeOut>14:00</TimeOut>
+<TimeIn>14:29</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-74</FSEEarnings>
+        </Finances>
+<Date>2019-02-21</Date>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N774MY</AircraftRegistration>
+<Departure>L45</Departure>
+<Destination>KBFL</Destination>
+<TimeOut>18:00</TimeOut>
+<TimeIn>18:17</TimeIn>
+<Distance>8</Distance>
+<Comment>N247IT was flown by another pilot to Los Angeles so I had to find another Cessna</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>2764</FSEEarnings>
+        </Finances>
+<Date>2019-02-21</Date>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N774MY</AircraftRegistration>
+<Departure>KBFL</Departure>
+<Destination>KSMX</Destination>
+<TimeOut>18:24</TimeOut>
+<TimeIn>19:20</TimeIn>
+<Distance>121</Distance>
+<Comment>It was MVFR at KBFL and vicinity, marginal weather on first half of route, route was far from direct,
+            so we've got quite high mileage and time
+        </Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-03-06</Date>
+<Departure>KSMX</Departure>
+<Destination>36CA</Destination>
+<TimeOut>18:00</TimeOut>
+<TimeIn>20:49</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-151</FSEEarnings>
+        </Finances>
+<Date>2019-03-07</Date>
+<AircraftType>C310</AircraftType>
+<AircraftRegistration>N431DF</AircraftRegistration>
+<Departure>36CA</Departure>
+<Destination>KBFL</Destination>
+<TimeOut>01:40</TimeOut>
+<TimeIn>02:20</TimeIn>
+<Distance>89</Distance>
+<Comment/>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-04-20</Date>
+<Departure>KBFL</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>16:00</TimeOut>
+<TimeIn>09:31</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>Flight to EGTB for IFT flying lessons</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-04-23</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC92</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGSF</Destination>
+<TimeOut>10:56</TimeOut>
+<TimeOff>11:09</TimeOff>
+<TimeOn>11:51</TimeOn>
+<TimeIn>11:54</TimeIn>
+<Distance>62</Distance>
+<Comment>Navigational flight to Peterborough</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-07-16</Date>
+<Callsign>GBAFC</Callsign>
+<FlightNumber>VFC93</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGSF</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>19:22</TimeOut>
+<TimeOff>19:29</TimeOff>
+<TimeOn>20:16</TimeOn>
+<TimeIn>20:19</TimeIn>
+<Distance>71</Distance>
+<Comment>Navigational flight back to Wycombe from Peterborough</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-07-31</Date>
+<Departure>EGTB</Departure>
+<Destination>EGLC</Destination>
+<TimeOut>15:00</TimeOut>
+<TimeIn>16:20</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to London City for E190 flight</Comment>
+</Transfer>
+<FlightReport>
+<Finances>
+            <Sponsor>airline</Sponsor>
+            <Airline>BAV</Airline>
+        </Finances>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Date>2019-08-15</Date>
+<Callsign>CFE1EC</Callsign>
+<FlightNumber>BA7310</FlightNumber>
+<AircraftType>E195</AircraftType>
+<AircraftRegistration>G-LCYZ</AircraftRegistration>
+<Departure>EGLC</Departure>
+<Destination>EGCC</Destination>
+<TimeOut>18:33</TimeOut>
+<TimeOff>18:44</TimeOff>
+<TimeOn>19:23</TimeOn>
+<TimeIn>19:26</TimeIn>
+<Distance>163</Distance>
+<Comment>Short flight to recover Embraer experience</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-05</Date>
+<Departure>EGCC</Departure>
+<Destination>EGYD</Destination>
+<TimeOut>12:30</TimeOut>
+<TimeIn>14:59</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting for C208 flight to Heathrow</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>6877</FSEEarnings>
+        </Finances>
+<Date>2019-09-05</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C208</AircraftType>
+<AircraftRegistration>G-CPSS</AircraftRegistration>
+<Departure>EGYD</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>18:54</TimeOut>
+<TimeOff>19:00</TimeOff>
+<TimeOn>19:51</TimeOn>
+<TimeIn>19:53</TimeIn>
+<Distance>124</Distance>
+<Comment>Returning Caravan to base and self reposition before IFT lesson</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-06</Date>
+<Departure>EGLL</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>13:16</TimeOut>
+<TimeIn>14:01</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Wycombe</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-09</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>N176CM</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>17:56</TimeOut>
+<TimeOff>17:58</TimeOff>
+<TimeOn>18:05</TimeOn>
+<TimeIn>18:08</TimeIn>
+<Distance>11</Distance>
+<Comment>Test flight on Default C172</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-09</Date>
+<Callsign/>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>18:15</TimeOut>
+<TimeOff>18:21</TimeOff>
+<TimeOn>18:28</TimeOn>
+<TimeIn>18:31</TimeIn>
+<Distance>11</Distance>
+<Comment>Test flight on RealAir C172</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-10</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>11:32</TimeOut>
+<TimeOff>11:42</TimeOff>
+<TimeOn>12:24</TimeOn>
+<TimeIn>12:28</TimeIn>
+<Distance>58</Distance>
+<Comment>BAV - IFT Lesson with Simon</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-17</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>11:36</TimeOut>
+<TimeOff>11:46</TimeOff>
+<TimeOn>12:37</TimeOn>
+<TimeIn>12:41</TimeIn>
+<Distance>71</Distance>
+<Comment>BAV - IFT Lesson with Simon</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-20</Date>
+<Departure>EGTB</Departure>
+<Destination>EGSS</Destination>
+<TimeOut>10:37</TimeOut>
+<TimeIn>12:16</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Stansted for C208 flight</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>3507</FSEEarnings>
+        </Finances>
+<Date>2019-09-20</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C208</AircraftType>
+<AircraftRegistration>G-CPSS</AircraftRegistration>
+<Departure>EGSS</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>18:10</TimeOut>
+<TimeOff>18:15</TimeOff>
+<TimeOn>18:55</TimeOn>
+<TimeIn>18:57</TimeIn>
+<Distance>75</Distance>
+<Comment>C208 ferried in FSE</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-21</Date>
+<Departure>EGLL</Departure>
+<Destination>LFQQ</Destination>
+<TimeOut>06:33</TimeOut>
+<TimeIn>09:01</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>C404 rescue mission</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>786</FSEEarnings>
+        </Finances>
+<Date>2019-09-21</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>LFQQ</Departure>
+<Destination>EBCI</Destination>
+<TimeOut>13:36</TimeOut>
+<TimeOff>13:41</TimeOff>
+<TimeOn>14:08</TimeOn>
+<TimeIn>14:09</TimeIn>
+<Distance>73</Distance>
+<Comment>Two passengers to Charleroi</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-200</FSEEarnings>
+        </Finances>
+<Date>2019-09-21</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EBCI</Departure>
+<Destination>EBNM</Destination>
+<TimeOut>14:10</TimeOut>
+<TimeOff>14:14</TimeOff>
+<TimeOn>14:23</TimeOn>
+<TimeIn>14:25</TimeIn>
+<Distance>23</Distance>
+<Comment>Flying to Namur airfield to pickup fuel</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-200</FSEEarnings>
+        </Finances>
+<Date>2019-09-21</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EBNM</Departure>
+<Destination>EBCI</Destination>
+<TimeOut>14:29</TimeOut>
+<TimeOff>14:33</TimeOff>
+<TimeOn>14:43</TimeOn>
+<TimeIn>14:44</TimeIn>
+<Distance>25</Distance>
+<Comment>Flying back to Charleroi to pass customs</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-600</FSEEarnings>
+        </Finances>
+<Date>2019-09-22</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EBCI</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>10:57</TimeOut>
+<TimeOff>11:05</TimeOff>
+<TimeOn>12:15</TimeOn>
+<TimeIn>12:19</TimeIn>
+<Distance>217</Distance>
+<Comment>Flight to Gatwick which will be the base for some period of time, fuel 78%-&gt;61%</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-23</Date>
+<Departure>EGKK</Departure>
+<Destination>LFXM</Destination>
+<TimeOut>16:17</TimeOut>
+<TimeIn>18:59</TimeIn>
+<Method>flights</Method>
+<Status>done</Status>
+<Comment>Transiting to France for another C208 ferry flight</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-60</FSEEarnings>
+        </Finances>
+<Date>2019-09-24</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C208</AircraftType>
+<AircraftRegistration>G-BZAH</AircraftRegistration>
+<Departure>LFXM</Departure>
+<Destination>LFQA</Destination>
+<TimeOut>18:25</TimeOut>
+<TimeOff>18:25</TimeOff>
+<TimeOn>18:32</TimeOn>
+<TimeIn>18:34</TimeIn>
+<Distance>12</Distance>
+<Comment>Night VFR leg to the nearest IFR airport</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-400</FSEEarnings>
+        </Finances>
+<Date>2019-09-25</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C208</AircraftType>
+<AircraftRegistration>G-BZAH</AircraftRegistration>
+<Departure>LFQA</Departure>
+<Destination>LFQQ</Destination>
+<TimeOut>18:15</TimeOut>
+<TimeOff>18:24</TimeOff>
+<TimeOn>19:06</TimeOn>
+<TimeIn>19:09</TimeIn>
+<Distance>104</Distance>
+<Comment>IFR flight to Lille airport for repair &amp; PAX load</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>10187</FSEEarnings>
+        </Finances>
+<Date>2019-09-27</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C208</AircraftType>
+<AircraftRegistration>G-BZAH</AircraftRegistration>
+<Departure>LFQQ</Departure>
+<Destination>EGGW</Destination>
+<TimeOut>09:01</TimeOut>
+<TimeOff>09:11</TimeOff>
+<TimeOn>10:43</TimeOn>
+<TimeIn>10:46</TimeIn>
+<Distance>189</Distance>
+<Comment>Profitable revenue flight to Luton</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>-200</FSEEarnings>
+        </Finances>
+<Date>2019-09-27</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C208</AircraftType>
+<AircraftRegistration>G-BZAH</AircraftRegistration>
+<Departure>EGGW</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>12:50</TimeOut>
+<TimeOff>12:53</TimeOff>
+<TimeOn>13:13</TimeOn>
+<TimeIn>13:14</TimeIn>
+<Distance>40</Distance>
+<Comment>Ferry flight to the base</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-09-27</Date>
+<Departure>EGLL</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>18:51</TimeOut>
+<TimeIn>19:50</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Reposition before EGKK-EDDK rotation</Comment>
+</Transfer>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-10-11</Date>
+<Departure>EGKK</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>14:55</TimeOut>
+<TimeIn>16:22</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Reposition before IFT Lesson</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-10-11</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>16:26</TimeOut>
+<TimeOff>16:36</TimeOff>
+<TimeOn>16:57</TimeOn>
+<TimeIn>17:01</TimeIn>
+<Distance>24</Distance>
+<Comment>IFT Lesson - Bad Weather Circuits</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+            <Airline>BAV</Airline>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-10-16</Date>
+<Callsign>WYC21A</Callsign>
+<FlightNumber>VFC01</FlightNumber>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>10:29</TimeOut>
+<TimeOff>10:38</TimeOff>
+<TimeOn>11:40</TimeOn>
+<TimeIn>11:44</TimeIn>
+<Distance>88</Distance>
+<Comment>IFT Lesson - Short Field Ops</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-10-20</Date>
+<Departure>EGTB</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>09:29</TimeOut>
+<TimeIn>10:56</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Gatwick</Comment>
+</Transfer>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>3686</FSEEarnings>
+        </Finances>
+<Date>2019-10-20</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EGKK</Departure>
+<Destination>EDDK</Destination>
+<TimeOut>11:07</TimeOut>
+<TimeOff>11:20</TimeOff>
+<TimeOn>13:06</TimeOn>
+<TimeIn>13:08</TimeIn>
+<Distance>300</Distance>
+<Comment>JetA fuel trip</Comment>
+</FlightReport>
+<FlightReport>
+<Flags>
+            <Network>offline</Network>
+            <FSE>true</FSE>
+        </Flags>
+<Finances>
+            <Sponsor>self</Sponsor>
+            <FSEEarnings>9017</FSEEarnings>
+        </Finances>
+<Date>2019-10-20</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EDDK</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>13:26</TimeOut>
+<TimeOff>13:31</TimeOff>
+<TimeOn>15:35</TimeOn>
+<TimeIn>15:39</TimeIn>
+<Distance>300</Distance>
+<Comment>JetA fuel trip</Comment>
+</FlightReport>
+<Transfer>
+<Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+<Date>2019-11-17</Date>
+<Departure>EGKK</Departure>
+<Destination>EGTB</Destination>
+<TimeOut>06:00</TimeOut>
+<TimeIn>07:27</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Wycombe for BAFC flight</Comment>
+</Transfer>
+<FlightReport>
+<Date>2019-11-19</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C172</AircraftType>
+<AircraftRegistration>G-BAFC</AircraftRegistration>
+<Departure>EGTB</Departure>
+<Destination>EGSU</Destination>
+<TimeOut>14:02</TimeOut>
+<TimeOff>14:11</TimeOff>
+<TimeOn>14:56</TimeOn>
+<TimeIn>14:57</TimeIn>
+<Distance>70</Distance>
+<Comment>IFT Practice Flight</Comment>
+</FlightReport>
+<Transfer>
+<Date>2019-11-24</Date>
+<Departure>EGSU</Departure>
+<Destination>EGKK</Destination>
+<TimeOut>07:31</TimeOut>
+<TimeIn>09:41</TimeIn>
+<Method>roads</Method>
+<Status>done</Status>
+<Comment>Commuting to Gatwick</Comment>
+</Transfer>
+<FlightReport>
+<Date>2019-11-24</Date>
+<Callsign/>
+<FlightNumber/>
+<AircraftType>C404</AircraftType>
+<AircraftRegistration>G-FIFA</AircraftRegistration>
+<Departure>EGKK</Departure>
+<Destination>EGLL</Destination>
+<TimeOut>13:02</TimeOut>
+<TimeOff>13:07</TimeOff>
+<TimeOn>13:38</TimeOn>
+<TimeIn>13:40</TimeIn>
+<Distance>85</Distance>
+<Comment>Fuel delivered to EGLL finally</Comment>
+</FlightReport>
+<Transfer>
+<Date>2019-11-24</Date>
+<Departure>EGLL</Departure>
+<Destination>EGGW</Destination>
+<TimeOut>17:38</TimeOut>
+<Method>roads</Method>
+<Status>in-progress</Status>
+<Comment>Commuting to Luton for C208 maintenance flight</Comment>
+</Transfer>
+</FSLog>
