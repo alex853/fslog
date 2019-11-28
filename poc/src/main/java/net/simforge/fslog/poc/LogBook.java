@@ -69,7 +69,7 @@ public class LogBook {
                 minTime = 0.25;
                 break;
             case FLIGHTS:
-                speed = 300;
+                speed = 400;
                 minTime = 2;
                 break;
             case MACH_3:
@@ -81,6 +81,10 @@ public class LogBook {
         }
 
         double hours = minTime + distance / speed;
+
+        if (hours >= 24) {
+            throw new IllegalStateException("Transfer longer than 24 hours is not supported");
+        }
 
         LocalDateTime timeIn = timeOut.plusMinutes((int) (hours * 60));
 
