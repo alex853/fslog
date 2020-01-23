@@ -1,10 +1,7 @@
 package net.simforge.fslog.poc;
 
 import net.simforge.commons.misc.Str;
-import org.beryx.textio.TerminalProperties;
-import org.beryx.textio.TextIO;
-import org.beryx.textio.TextIoFactory;
-import org.beryx.textio.TextTerminal;
+import org.beryx.textio.*;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
@@ -16,23 +13,27 @@ import java.util.*;
 import java.util.List;
 
 import static net.simforge.fslog.poc.FSLogConsoleApp.HHmm;
+import static net.simforge.fslog.poc.ValidationResult.Result.OK;
 
 public class FSLogTextIOApp {
     private static final String CLEAR_SCREEN = "CLEAR_SCREEN";
     private static TextIO textIO;
     private static TextTerminal terminal;
     private static TerminalProperties<?> terminalProperties;
+    private static boolean isFilterOn = false;
+    private static int filterFrom = 0;
+    private static int filterTo = Integer.MAX_VALUE;
 
     public static final Column[] MOVEMENT_COLUMNS = new Column[]{
             new RowNumberColumn(),
             new DateOfFlightColumn(),
             new MovementTypeColumn(),
-            new SimpleColumn("Callsign", 8, "Callsign"),
-            new SimpleColumn("Flight #", 8, "FlightNumber"),
-            new SimpleColumn("Type", 4, "AircraftType"),
-            new SimpleColumn("Reg #", 8, "AircraftRegistration"),
-            new SimpleColumn("Dep", 4, "Departure"),
-            new SimpleColumn("Dest", 4, "Destination"),
+            new SimpleColumn("Callsign", 8, "Callsign", true),
+            new SimpleColumn("Flight #", 8, "FlightNumber", true),
+            new SimpleColumn("Type", 4, "AircraftType", true),
+            new SimpleColumn("Reg #", 8, "AircraftRegistration", true),
+            new SimpleColumn("Dep", 4, "Departure", true),
+            new SimpleColumn("Dest", 4, "Destination", true),
             new TimeColumn(TimeType.TimeOut, false),
             new TimeColumn(TimeType.TimeOff, false),
             new TimeColumn(TimeType.TimeOn, false),
@@ -50,8 +51,8 @@ public class FSLogTextIOApp {
             new NoColumn(8),
             new NoColumn(8),
             new TransferMethodColumn(),
-            new SimpleColumn("Dep", 4, "Departure"),
-            new SimpleColumn("Dest", 4, "Destination"),
+            new SimpleColumn("Dep", 4, "Departure", true),
+            new SimpleColumn("Dest", 4, "Destination", true),
             new TimeColumn(TimeType.TimeOut, true),
             new TransferStatusColumn(),
             new TimeColumn(TimeType.TimeIn, false),
@@ -98,6 +99,7 @@ public class FSLogTextIOApp {
                             "Add Transfer",
                             "Add Discontinuity",
                             "Join Discontinuity",
+                            "Set Filter",
                             "Save",
                             "Reload",
                             "Quit")
@@ -110,6 +112,10 @@ public class FSLogTextIOApp {
                 addTransfer(logBook);
             } else if (action.equals("Add Discontinuity")) {
                 addDiscontinuity(logBook);
+            } else if (action.equals("Join Discontinuity")) {
+                joinDiscontinuity(logBook);
+            } else if (action.equals("Set Filter")) {
+                setFilter(logBook);
             } else if (action.equals("Save")) {
                 FSLogConsoleApp.saveLogBook(logBook, logbookFilename);
                 terminal.println("Logbook saved");
@@ -221,7 +227,36 @@ public class FSLogTextIOApp {
         }
 
         FlightReport newFlight = builder.build();
-        logBook.insert(position, newFlight); // todo check result!!!11
+        ValidationResult result = logBook.insert(position, newFlight);
+
+        if (result.getOverallResult() != OK) {
+            int level = 0;
+            ValidationResult levelUp = ValidationResult.createOK();
+
+            List<ValidationResult> queue = new LinkedList<>();
+            queue.add(result);
+
+            while (!queue.isEmpty()) {
+                ValidationResult each = queue.remove(0);
+
+                if (each == levelUp) {
+                    level--;
+                    continue;
+                }
+
+                terminal.println(Str.s(level*4) + "Result " + each.getOverallResult());
+                for (String message : each.getMessages()) {
+                    terminal.println(Str.s(level*4 + 8) + message);
+                }
+
+                List<ValidationResult> nested = each.getNested();
+                if (!nested.isEmpty()) {
+                    queue.add(0, levelUp);
+                    queue.addAll(0, nested);
+                    level++;
+                }
+            }
+        }
 
         terminal.resetToBookmark(CLEAR_SCREEN);
         printLogBook(logBook);
@@ -240,7 +275,7 @@ public class FSLogTextIOApp {
                     .withMinVal(0)
                     .withMaxVal(entries.size())
                     .withDefaultValue(entries.size())
-                    .read("Specify ### of row after which you are going to add new flight (or 0 to add as first entry)");
+                    .read("Specify ### of row after which you are going to add new transfer (or 0 to add as first entry)");
 
             LogBookEntry previousEntry = position >= 1 ? entries.get(position - 1) : null;
             LogBookEntry nextEntry = position < entries.size() ? entries.get(position) : null;
@@ -406,6 +441,100 @@ public class FSLogTextIOApp {
         printLogBook(logBook);
     }
 
+    private static void joinDiscontinuity(LogBook logBook) {
+        List<LogBookEntry> entries = logBook.getEntries();
+        Integer position;
+
+        List<LogBookEntry> prevEntries;
+        List<LogBookEntry> nextEntries;
+        if (entries.isEmpty()) {
+            position = 0;
+            prevEntries = new ArrayList<>();
+            nextEntries = new ArrayList<>();
+            // todo
+        } else {
+            position = textIO.newIntInputReader()
+                    .withMinVal(1)
+                    .withMaxVal(entries.size())
+                    .read("Specify ### of row with discontinuity you are going to join");
+
+            LogBookEntry entry = entries.get(position - 1);
+            if (!(entry instanceof Discontinuity)) {
+                // todo
+                throw new IllegalStateException();
+            }
+
+            prevEntries = entries.subList(Math.max(0, position - 3), position - 1);
+            nextEntries = entries.subList(position, Math.min(position + 3, entries.size()));
+        }
+
+        terminal.resetToBookmark(CLEAR_SCREEN);
+        terminal.println("Joining Discontinuity...........");
+        terminal.println();
+
+        for (Column column : MOVEMENT_COLUMNS) {
+            terminal.print(align(column, column.header));
+            terminal.print(" ");
+        }
+        terminal.println();
+
+        Map<String, Object> ctx = new HashMap<>();
+
+        int rowNumber = position - prevEntries.size() + 1;
+
+        List<LogBookEntry> subset = new ArrayList<>(prevEntries);
+        subset.addAll(nextEntries);
+
+        for (LogBookEntry entry : subset) {
+            Column[] columns = MOVEMENT_COLUMNS;
+            if (entry instanceof FlightReport) {
+                terminalProperties.setPromptColor(Color.GREEN);
+            } else if (entry instanceof Transfer) {
+                terminalProperties.setPromptColor(Color.CYAN);
+                columns = TRANSFER_COLUMNS;
+            } else if (entry instanceof Discontinuity) {
+                terminalProperties.setPromptColor(Color.YELLOW);
+                columns = DISCONTINUITY_COLUMNS;
+            }
+
+            ctx.put("rowNumber", rowNumber);
+
+            for (Column column : columns) {
+                terminal.print(align(column, column.format(entry, ctx)));
+                terminal.print(" ");
+            }
+            terminal.println();
+
+            rowNumber++;
+        }
+
+        Boolean isCorrect = textIO.newBooleanInputReader().read("Is that correct?");
+
+        if (isCorrect) {
+            logBook.remove(position - 1);
+        }
+
+        terminal.resetToBookmark(CLEAR_SCREEN);
+        printLogBook(logBook);
+    }
+
+    private static void setFilter(LogBook logBook) {
+        if (isFilterOn) {
+            terminal.println("Filter is ON, from " + filterFrom + " to " + filterTo);
+        } else {
+            terminal.println("Filter is OFF");
+        }
+
+        isFilterOn = textIO.newBooleanInputReader().withDefaultValue(isFilterOn).read("Enable Filter?");
+        if (isFilterOn) {
+            filterFrom = textIO.newIntInputReader().withDefaultValue(filterFrom).read("Show rows since number");
+            filterTo = textIO.newIntInputReader().withDefaultValue(filterTo).read("Show rows till number");
+        }
+
+        terminal.resetToBookmark(CLEAR_SCREEN);
+        printLogBook(logBook);
+    }
+
     private static void printLogBook(LogBook logBook) {
         logBook.compute();
         List<LogBookEntry> entries = logBook.getEntries();
@@ -421,24 +550,31 @@ public class FSLogTextIOApp {
         Map<String, Object> ctx = new HashMap<>();
         int rowNumber = 1;
         for (LogBookEntry entry : entries) {
-            Column[] columns = MOVEMENT_COLUMNS;
-            if (entry instanceof FlightReport) {
-                props.setPromptColor(Color.GREEN);
-            } else if (entry instanceof Transfer) {
-                props.setPromptColor(Color.CYAN);
-                columns = TRANSFER_COLUMNS;
-            } else if (entry instanceof Discontinuity) {
-                props.setPromptColor(Color.YELLOW);
-                columns = DISCONTINUITY_COLUMNS;
+            boolean showRow = true;
+            if (isFilterOn) {
+                showRow = filterFrom <= rowNumber && rowNumber <= filterTo;
             }
 
-            ctx.put("rowNumber", rowNumber);
+            if (showRow) {
+                Column[] columns = MOVEMENT_COLUMNS;
+                if (entry instanceof FlightReport) {
+                    props.setPromptColor(Color.GREEN);
+                } else if (entry instanceof Transfer) {
+                    props.setPromptColor(Color.CYAN);
+                    columns = TRANSFER_COLUMNS;
+                } else if (entry instanceof Discontinuity) {
+                    props.setPromptColor(Color.YELLOW);
+                    columns = DISCONTINUITY_COLUMNS;
+                }
 
-            for (Column column : columns) {
-                terminal.print(align(column, column.format(entry, ctx)));
-                terminal.print(" ");
+                ctx.put("rowNumber", rowNumber);
+
+                for (Column column : columns) {
+                    terminal.print(align(column, column.format(entry, ctx)));
+                    terminal.print(" ");
+                }
+                terminal.println();
             }
-            terminal.println();
 
             rowNumber++;
         }
@@ -477,10 +613,18 @@ public class FSLogTextIOApp {
 
     private static class SimpleColumn extends Column<LogBookEntry> {
         private final String propertyName;
+        private final boolean toUpperCase;
 
         public SimpleColumn(String header, int width, String propertyName) {
             super(header, width);
             this.propertyName = propertyName;
+            this.toUpperCase = false;
+        }
+
+        public SimpleColumn(String header, int width, String propertyName, boolean toUpperCase) {
+            super(header, width);
+            this.propertyName = propertyName;
+            this.toUpperCase = toUpperCase;
         }
 
         @Override
@@ -501,6 +645,9 @@ public class FSLogTextIOApp {
         @Override
         void read(Object builder) {
             String input = textIO.newStringInputReader().withMinLength(0).withMaxLength(width).read();
+            if (toUpperCase) {
+                input = input.toUpperCase();
+            }
             try {
                 String setterName = "set" + propertyName;
                 Method declaredMethod = Arrays.stream(builder.getClass().getDeclaredMethods()).filter(m -> m.getName().equals(setterName)).findFirst().get();

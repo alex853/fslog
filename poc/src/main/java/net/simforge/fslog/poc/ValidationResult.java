@@ -1,6 +1,7 @@
 package net.simforge.fslog.poc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ValidationResult {
@@ -28,6 +29,14 @@ public class ValidationResult {
 
     public Result getOverallResult() {
         return overallResult;
+    }
+
+    public List<String> getMessages() {
+        return Collections.unmodifiableList(messages);
+    }
+
+    public List<ValidationResult> getNested() {
+        return Collections.unmodifiableList(nested);
     }
 
     public void fail(String message) {
