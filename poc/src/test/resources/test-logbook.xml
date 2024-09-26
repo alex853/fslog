@@ -1,0 +1,41 @@
+<FSLog>
+
+    <Discontinuity>
+        <Date>2019-01-27</Date>
+    </Discontinuity>
+
+    <Transfer>
+        <Date>2019-04-15</Date>
+        <Method>flights</Method>
+        <Departure>KBFL</Departure>
+        <Destination>EGSF</Destination>
+        <TimeOut>12:00</TimeOut>
+        <Status>done</Status>
+        <Comment>Flight to EGTB/EGSF for IFT flying lessons</Comment>
+        <Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+    </Transfer>
+
+    <FlightReport>
+        <Date>2019-07-16</Date>
+        <Callsign>GBAFC</Callsign>
+        <FlightNumber>VFC93</FlightNumber>
+        <AircraftType>C172</AircraftType>
+        <AircraftRegistration>G-BAFC</AircraftRegistration>
+        <Departure>EGSF</Departure>
+        <Destination>EGTB</Destination>
+        <TimeOut>19:22</TimeOut>
+        <TimeIn>20:19</TimeIn>
+        <Comment>Navigational flight back to Wycombe from Peterborough</Comment>
+        <Distance>71</Distance>
+        <Flags>
+            <Network>VATSIM</Network>
+            <FSE>false</FSE>
+        </Flags>
+        <Finances>
+            <Sponsor>self</Sponsor>
+        </Finances>
+    </FlightReport>
+
+</FSLog>
